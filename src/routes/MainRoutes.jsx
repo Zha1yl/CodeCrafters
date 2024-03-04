@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const MainRoutes = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <></>;
+};
 
-export default MainRoutes
+export default MainRoutes;
