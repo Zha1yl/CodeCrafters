@@ -1,0 +1,29 @@
+/* login */
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  height: 35vw;
+  background-color: white;
+  border: 3px solid black;
+  margin: 7vw 0vw 3vw 35vw;
+  padding: 2vw;
+}
+.auth-card input {
+  height: 3vw;
+  border: 3px solid lightgrey;
+  margin-bottom: 1vw;
+}
+.auth-card button {
+  height: 3vw;
+}
+.auth-card p {
+  font-size: 1.5vw;
+  text-align: center;
+}
+.auth-card img {
+  height: 3vw;
+  width: 3vw;
+  margin: 2vw 0vw 1vw 11vw;
+}
+
