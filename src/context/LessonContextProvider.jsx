@@ -1,13 +1,12 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext } from "react";
 const lessonContext = createContext();
-export const useLesson = ()=> useContext(lessonContext)
+export const useLesson = () => useContext(lessonContext);
 
-const LessonContextProvider = ({children}) => {
+const LessonContextProvider = ({ children }) => {
+  const values = {};
   return (
-    <lessonContext.Provider>
-      {children}
-    </lessonContext.Provider>
-  )
-}
+    <lessonContext.Provider value={values}>{children}</lessonContext.Provider>
+  );
+};
 
-export default LessonContextProvider
+export default LessonContextProvider;
