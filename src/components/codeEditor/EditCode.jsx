@@ -24,7 +24,6 @@ const EditCode = () => {
           <CodeLanguageSelector language={language} onSelect={onSelect} />
           <Editor
             height="75vh"
-            theme="vs-dark"
             language={language}
             defaultValue={CODE_SNIPPETS[language]}
             onMount={onMount}

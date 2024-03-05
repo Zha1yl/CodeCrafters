@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.scss";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -21,9 +22,9 @@ const Footer = () => {
             образовательные инициативы и помогают оплачивать серверы, услуги и
             персонал.
           </span>
-          <h3>
+          <Link to={"/donate"}>
             Вы можете сделать пожертвование, не облагаемое налогом, здесь .
-          </h3>
+          </Link>
         </div>
         <div className="footer-info-right">
           <h4>Полезные ссылки</h4>
