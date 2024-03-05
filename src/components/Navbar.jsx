@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.scss";
+import ModalWindow from "./navbar_modal/ModalWindow";
 
 const Navbar = () => {
+  // ! Модальное окно
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  // ! Переключение темы
+  const toggleTheme = () => {
+    document.body.classList.toggle("dark-theme");
+  };
   return (
     <nav className="navbar">
       <div className="nav__left">
@@ -43,12 +58,12 @@ const Navbar = () => {
           />
         </div>
         <div className="nav__project-name">
-          <h2 className="nav__title">FreeCodeCamp</h2>
+          <h2 className="nav__title">CodeCrafters</h2>
           <div className="nav__title_icon"></div>
         </div>
       </div>
       <div className="nav__right">
-        <div className="nav__theme nav__box">
+        <div className="nav__theme nav__box" onClick={toggleTheme}>
           <svg
             width="15"
             height="14"
@@ -153,12 +168,15 @@ const Navbar = () => {
           </svg>
         </div>
         <div className="nav__menu nav__box">
-          <p className="nav__box_text">Menu</p>
+          <p className="nav__box_text" onClick={openModal}>
+            Меню
+          </p>
         </div>
         <div className="nav__sign-in nav__box">
-          <p className="nav__box_text">Sign in</p>
+          <p className="nav__box_text">Войти</p>
         </div>
       </div>
+      <ModalWindow isOpen={isOpen} onClose={closeModal} />
     </nav>
   );
 };
