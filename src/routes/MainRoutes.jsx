@@ -1,10 +1,13 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+
+import DonatePage from '../pages/DonatePage'
 
 const MainRoutes = () => {
   return (
-    <div>
-      
-    </div>
+    <Routes>
+      <Route path='/donate' element={<DonatePage />} />
+    </Routes>
   )
 }
 
