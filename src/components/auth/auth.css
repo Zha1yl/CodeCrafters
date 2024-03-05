@@ -5,7 +5,7 @@
   width: 25vw;
   background-color: white;
   border: 3px solid black;
-  margin: 7vw 0vw 3vw 35vw;
+  margin: 7vw 0vw 3vw 37vw;
   padding: 2vw;
 }
 .auth-card input {
@@ -17,6 +17,18 @@
   height: 3vw;
   margin-bottom: 2vw;
   cursor: pointer;
+  background-color: #efa846;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.auth-card button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+.auth-card input:focus {
+  outline: 2px solid #6a8bff;
 }
 .auth-card p {
   font-size: 1.7vw;
