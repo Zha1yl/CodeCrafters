@@ -1,11 +1,12 @@
 import React from "react";
 import EditCode from "../components/codeEditor/EditCode";
+import { Box } from "@chakra-ui/react";
 
 const CodeEditorPage = () => {
   return (
-    <div style={{ minHeight: "95vh", padding: "32px, 24px" }}>
+    <Box minH="100vh" px={6} py={8}>
       <EditCode />
-    </div>
+    </Box>
   );
 };
 

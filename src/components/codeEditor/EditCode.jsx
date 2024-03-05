@@ -3,6 +3,7 @@ import CodeLanguageSelector from "./CodeLanguageSelector";
 import { CODE_SNIPPETS } from "../../helpers/const";
 import OutputCode from "./OutputCode";
 import { Editor } from "@monaco-editor/react";
+import { Box, HStack } from "@chakra-ui/react";
 
 const EditCode = () => {
   const editorRef = useRef();
@@ -17,9 +18,9 @@ const EditCode = () => {
     setValue(CODE_SNIPPETS[language]);
   };
   return (
-    <div>
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "50%" }}>
+    <Box>
+      <HStack spacing={4}>
+        <Box width="50%">
           <CodeLanguageSelector language={language} onSelect={onSelect} />
           <Editor
             height="75vh"
@@ -29,10 +30,10 @@ const EditCode = () => {
             value={value}
             onChange={(value) => setValue(value)}
           />
-        </div>
+        </Box>
         <OutputCode editorRef={editorRef} language={language} />
-      </div>
-    </div>
+      </HStack>
+    </Box>
   );
 };
 
