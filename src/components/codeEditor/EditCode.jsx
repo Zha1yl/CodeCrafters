@@ -1,9 +1,9 @@
 import { Box, HStack } from "@chakra-ui/react";
-import { Editor } from "@monaco-editor/react";
 import React, { useRef, useState } from "react";
 import CodeLanguageSelector from "./CodeLanguageSelector";
 import { CODE_SNIPPETS } from "../../helpers/const";
 import OutputCode from "./OutputCode";
+import { Editor } from "@monaco-editor/react";
 
 const EditCode = () => {
   const editorRef = useRef();
@@ -24,7 +24,6 @@ const EditCode = () => {
           <CodeLanguageSelector language={language} onSelect={onSelect} />
           <Editor
             height="75vh"
-            theme="vs-dark"
             language={language}
             defaultValue={CODE_SNIPPETS[language]}
             onMount={onMount}
