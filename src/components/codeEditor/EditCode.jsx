@@ -1,4 +1,3 @@
-import { Box, HStack } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import CodeLanguageSelector from "./CodeLanguageSelector";
 import { CODE_SNIPPETS } from "../../helpers/const";
@@ -18,9 +17,9 @@ const EditCode = () => {
     setValue(CODE_SNIPPETS[language]);
   };
   return (
-    <Box>
-      <div>
-        <Box width="50%">
+    <div>
+      <div style={{ display: "flex" }}>
+        <div style={{ width: "50%" }}>
           <CodeLanguageSelector language={language} onSelect={onSelect} />
           <Editor
             height="75vh"
@@ -30,10 +29,10 @@ const EditCode = () => {
             value={value}
             onChange={(value) => setValue(value)}
           />
-        </Box>
+        </div>
         <OutputCode editorRef={editorRef} language={language} />
       </div>
-    </Box>
+    </div>
   );
 };
 
