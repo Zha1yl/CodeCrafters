@@ -1,14 +1,18 @@
-import React from 'react'
-import MainRoutes from './routes/MainRoutes'
-import Donate from './components/donate/Donate'
+import React from "react";
+import Footer from "./components/footer/Footer";
+import MainRoutes from "./routes/MainRoutes";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div>
-      <MainRoutes />
-      <Donate />
+    <div className="container">
+      <Navbar />
+          <MainRoutes />
+     <Footer />
     </div>
-  )
-}
 
-export default App
+
+  );
+};
+
+export default App;
