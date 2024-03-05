@@ -1,10 +1,10 @@
-
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Auth from "../pages/Auth";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
+
 
 
 const MainRoutes = () => {
