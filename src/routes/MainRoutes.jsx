@@ -8,6 +8,8 @@ import CodeEditorPage from "../pages/CodeEditorPage";
 import Donate from "../components/donate/Donate";
 import VideoPage from "../pages/VideoPage";
 import TasksPage from "../pages/TasksPage";
+import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
+import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -19,6 +21,8 @@ const MainRoutes = () => {
     { id: 6, link: "/donate", element: <Donate /> },
     { id: 7, link: "/video", element: <VideoPage /> },
     { id: 8, link: "/tasks", element: <TasksPage /> },
+    { id: 9, link: "/py", element: <LessonContentPitthon /> },
+    { id: 10, link: "/js", element: <LessonComponentJs /> },
   ];
   return (
     <div>
