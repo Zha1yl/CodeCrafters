@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
-
 const Footer = () => {
   const navigate = useNavigate();
   return (
@@ -27,7 +26,7 @@ const Footer = () => {
             образовательные инициативы и помогают оплачивать серверы, услуги и
             персонал.
           </span>
-          <h3 onClick={() => navigate("/donate")}
+          <h3 onClick={() => navigate("/donate")}>
             Вы можете сделать пожертвование, не облагаемое налогом, здесь .
           </h3>
         </div>
