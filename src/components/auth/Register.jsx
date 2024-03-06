@@ -16,7 +16,7 @@ const Register = () => {
         <button>Зарегистрироваться</button>
         <p>
           У вас уже есть аккаунт?
-          <Link style={{ textDecoration: "none" }} to="/login">
+          <Link style={{ textDecoration: "none", color:"blue" }} to="/login">
             Авторизация
           </Link>
         </p>

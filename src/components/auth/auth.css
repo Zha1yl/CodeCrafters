@@ -1,4 +1,7 @@
 /* login */
+.auth-container {
+  padding-top: 0.5vw;
+}
 .auth-card {
   display: flex;
   flex-direction: column;
@@ -45,7 +48,11 @@
   text-align: center;
   margin: 0vw 0vw 7vw 16vw;
 }
+
 @media all and (max-width: 769px) {
+  .auth-container {
+    padding-top: 5vw;
+  }
   .auth-footer {
     margin-left: 13vw;
     width: 69vw;
@@ -58,8 +65,14 @@
     height: 4vw;
     margin-left: 8vw;
   }
+  .auth-card button {
+    font-size: 1.5vw;
+  }
 }
 @media all and (max-width: 426px) {
+  .auth-container {
+    padding-top: 8vw;
+  }
   .auth-footer {
     margin-left: 11vw;
     width: 81vw;
@@ -67,8 +80,6 @@
   }
   .auth-card {
     width: 35vw;
-    display: flex;
-    gap: 1vw;
   }
   .auth-card input {
     padding: 2vw;
