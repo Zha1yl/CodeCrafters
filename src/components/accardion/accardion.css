@@ -1,0 +1,45 @@
+.accardion{
+    list-style-type: none;
+    margin: 16px;
+    padding: 16px;
+    background-color: #dcdcdc;
+    border-radius: 7px;
+}
+
+.accardion-item{
+    margin-bottom: 16px;
+    background-color: #ffffff;
+    border-radius: 7px;
+}
+
+.accardion-header{
+    position: relative;
+    width: 100%;
+    padding: 20px 60px 20px 30px;
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 7px;
+    font-size: 22px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accardion-colops{
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s;
+}
+
+.accardion-colops.open{
+    height: auto;
+}
+
+.accardion-body{
+    padding: 30px 60px 30px 30px;
+    background-color: #f1f1f1;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: 20px;
+    color: #393939;
+}
+

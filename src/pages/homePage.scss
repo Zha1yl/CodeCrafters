@@ -1,0 +1,133 @@
+.main {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @media (max-width: 900px) {
+    width: 80%;
+  }
+  .main__title {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 28px;
+    @media (max-width: 600px) {
+      margin-top: 50px;
+      font-size: 25px;
+    }
+    @media (max-width: 400px) {
+      margin-top: 50px;
+      font-size: 20px;
+    }
+  }
+  .main__title span {
+    font-size: 35px;
+    @media (max-width: 400px) {
+      font-size: 28px;
+    }
+  }
+  .main__subtitle {
+    margin: 0 auto;
+    margin-top: 60px;
+    font-size: 22px;
+    @media (max-width: 600px) {
+      margin-top: 40px;
+    }
+    @media (max-width: 400px) {
+      margin-top: 20px;
+    }
+  }
+  .main__text {
+    margin-top: 50px;
+    font-size: 20px;
+
+    @media (max-width: 600px) {
+      margin-top: 30px;
+    }
+    @media (max-width: 500px) {
+      font-size: 14px;
+    }
+  }
+  .main__link {
+    color: #000;
+  }
+  .main__btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @media (max-width: 900px) {
+      width: 100%;
+    }
+    .main__button {
+      margin-top: 30px;
+      width: 60%;
+      height: 80px;
+      border: 3px solid #feac32;
+      background-color: #fecc4c;
+      transition: 0.3s;
+      font-size: 25px;
+      cursor: pointer;
+      @media (max-width: 600px) {
+        font-size: 18px;
+      }
+    }
+    .main__button:hover {
+      background-color: #ffac33;
+      transition: 0.3s;
+    }
+  }
+  .section {
+    margin: 40px 0;
+    width: 100%;
+    .section__block {
+      width: 100%;
+      background-color: rgb(207, 205, 205);
+      border: 3px solid black;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      cursor: pointer;
+      @media (max-width: 600px) {
+        padding: 5px;
+      }
+      .section__pic {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+        @media (max-width: 600px) {
+          width: 50px;
+          height: 50px;
+          .svg-icon {
+            width: 100%;
+          }
+        }
+        @media (max-width: 450px) {
+          width: 50px;
+          height: 50px;
+          .svg-icon {
+            width: 150%;
+          }
+        }
+      }
+      .section__desc {
+        font-size: 22px;
+        font-weight: 600;
+        @media (max-width: 600px) {
+          font-size: 14px;
+        }
+      }
+    }
+    .section__block:hover {
+      background-color: #000;
+      color: #fff;
+      transition: 0.3s;
+    }
+    .section__block:hover .svg-icon path {
+      transition: fill 0.3s;
+    }
+    .section__block:hover .svg-icon path {
+      fill: #fff;
+    }
+  }
+}

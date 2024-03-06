@@ -4,8 +4,10 @@ import HomePage from "../pages/HomePage";
 import Auth from "../pages/Auth";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
-import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
-import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
+import CodeEditorPage from "../pages/CodeEditorPage";
+import Donate from "../components/donate/Donate";
+import VideoPage from "../pages/VideoPage";
+import TasksPage from "../pages/TasksPage";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -13,8 +15,10 @@ const MainRoutes = () => {
     { id: 2, link: "/auth", element: <Auth /> },
     { id: 3, link: "/login", element: <Login /> },
     { id: 4, link: "/register", element: <Register /> },
-    { id: 5, link: "/lessonjs", element: <LessonComponentJs /> },
-    { id: 6, link: "/lessonpy", element: <LessonContentPitthon /> },
+    { id: 5, link: "/codeedit", element: <CodeEditorPage /> },
+    { id: 6, link: "/donate", element: <Donate /> },
+    { id: 7, link: "/video", element: <VideoPage /> },
+    { id: 8, link: "/tasks", element: <TasksPage /> },
   ];
   return (
     <div>

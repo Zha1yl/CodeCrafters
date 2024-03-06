@@ -16,12 +16,12 @@ const Register = () => {
         <button>Зарегистрироваться</button>
         <p>
           У вас уже есть аккаунт?
-          <Link style={{ textDecoration: "none" }} to="/login">
+          <Link style={{ textDecoration: "none", color:"blue" }} to="/login">
             Авторизация
           </Link>
         </p>
       </div>
-      <p style={{ width: "69vw", textAlign: "center", marginLeft: "16vw" }}>
+      <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является
         частной. Мы используем ваш адрес электронной почты, чтобы подключить вас
         к вашей учетной записи. Чтобы создать учетную запись на freeCodeCamp,
