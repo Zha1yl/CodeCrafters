@@ -4,9 +4,11 @@
     padding: 16px;
     background-color: #dcdcdc;
     border-radius: 7px;
+    
 }
 
 .accardion-item{
+    margin-top: 30px;
     margin-bottom: 16px;
     background-color: #ffffff;
     border-radius: 7px;
@@ -22,15 +24,17 @@
     font-size: 22px;
     text-align: left;
     cursor: pointer;
+    color: black;
 }
 
-.accardion-colops{
+.accardion-colop{
     height: 0;
     overflow: hidden;
     transition: height 0.3s;
+    
 }
 
-.accardion-colops.open{
+.accardion-colop.open{
     height: auto;
 }
 
