@@ -8,7 +8,6 @@ const App = () => {
     <div className="container">
       <Navbar />
       <MainRoutes />
-      <Footer />
     </div>
   );
 };

@@ -4,17 +4,14 @@
   box-sizing: border-box;
 }
 body {
-  color: black;
+  color: black !important;
+  background-color: #fff !important;
   transition: 0.5s;
 }
 .dark-theme {
-  background-color: #3b3b4f;
-  color: #fff;
+  background-color: #3b3b4f !important;
+  color: #fff !important;
   transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
   .section__block {
     background-color: #3b3b4f !important;
   }

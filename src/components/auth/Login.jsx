@@ -16,7 +16,10 @@ const Login = () => {
         <button>Авторизоваться</button>
         <p>
           У вас ещё нет аккаунта?
-          <Link style={{ textDecoration: "none" }} to="/register">
+          <Link
+            style={{ textDecoration: "none", color: "blue" }}
+            to="/register"
+          >
             Зарегистрироваться
           </Link>
         </p>
