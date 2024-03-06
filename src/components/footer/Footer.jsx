@@ -4,7 +4,6 @@ import "./footer.scss";
 import { useNavigate } from "react-router-dom";
 
 
-
 const Footer = () => {
   const navigate = useNavigate();
   return (
@@ -27,7 +26,7 @@ const Footer = () => {
             персонал.
           </span>
           <h3 onClick={() => navigate("/donate")}>
-            Вы можете сделать пожертвование не облагаемое налогом здесь
+            Вы можете сделать пожертвование, не облагаемое налогом, здесь .
           </h3>
         </div>
         <div className="footer-info-right">
