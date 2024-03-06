@@ -55,7 +55,7 @@ const ModalWindow = ({ isOpen, onClose, windowWidth, toggleTheme }) => {
         <div className="modal__setting">
           <p className="modal__desc">Profile</p>
         </div>
-        <div className="modal__setting" onClick={navigate("/donate")}>
+        <div className="modal__setting" onClick={() => navigate("/donate")}>
           <p className="modal__desc">Donat</p>
         </div>
         {/* при адаптиве в бургер меню появляются доп пункты */}
