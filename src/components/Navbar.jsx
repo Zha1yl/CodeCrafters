@@ -20,6 +20,7 @@ const Navbar = () => {
   const toggleTheme = () => {
     setIsTheme((prevTheme) => !prevTheme);
   };
+
   // ! При адаптиве смена темы и переключения языка заходят в кнопку меню
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {

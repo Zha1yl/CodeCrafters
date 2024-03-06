@@ -3,6 +3,7 @@ import "./footer.scss";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
 const Footer = () => {
   const navigate = useNavigate();
   return (
