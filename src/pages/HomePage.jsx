@@ -1,8 +1,9 @@
 import React from "react";
 import "./homePage.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     <main className="main">
       <h1 className="main__title">
@@ -61,7 +62,9 @@ const HomePage = () => {
       </p>
       <p className="main__text">Приятного кодирования!</p>
       <div className="main__btn">
-        <button className="main__button">Войдите чтобы начать</button>
+        <button className="main__button" onClick={() => navigate("/auth")}>
+          Войдите чтобы начать
+        </button>
       </div>
 
       <div className="section">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./navbar.scss";
 import ModalWindow from "./navbar_modal/ModalWindow";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // ! Модальное окно
@@ -17,6 +18,7 @@ const Navbar = () => {
   const toggleTheme = () => {
     document.body.classList.toggle("dark-theme");
   };
+  const navigate = useNavigate();
   return (
     <nav className="navbar">
       <div className="nav__left">
@@ -58,7 +60,14 @@ const Navbar = () => {
           />
         </div>
         <div className="nav__project-name">
-          <h2 className="nav__title">CodeCrafters</h2>
+          <h2
+            className="nav__title"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            CodeCrafters
+          </h2>
           <div className="nav__title_icon"></div>
         </div>
       </div>

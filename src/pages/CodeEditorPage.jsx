@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 
 const CodeEditorPage = () => {
   return (
-    <Box minH="100vh" px={6} py={8}>
+    <Box minH="95vh" bg="#0f0a19" color="gray.500" px={6} py={8}>
       <EditCode />
     </Box>
   );

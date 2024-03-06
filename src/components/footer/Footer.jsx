@@ -1,7 +1,9 @@
 import React from "react";
 import "./footer.scss";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <div className="footer">
       <div className="footer-info">
@@ -21,7 +23,7 @@ const Footer = () => {
             образовательные инициативы и помогают оплачивать серверы, услуги и
             персонал.
           </span>
-          <h3>
+          <h3 onClick={() => navigate("/donate")}>
             Вы можете сделать пожертвование, не облагаемое налогом, здесь .
           </h3>
         </div>

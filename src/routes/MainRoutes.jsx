@@ -5,7 +5,7 @@ import Auth from "../pages/Auth";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
 import CodeEditorPage from "../pages/CodeEditorPage";
-
+import Donate from "../components/donate/Donate";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -14,6 +14,7 @@ const MainRoutes = () => {
     { id: 3, link: "/login", element: <Login /> },
     { id: 4, link: "/register", element: <Register /> },
     { id: 5, link: "/codeedit", element: <CodeEditorPage /> },
+    { id: 6, link: "/donate", element: <Donate /> },
   ];
   return (
     <div>
