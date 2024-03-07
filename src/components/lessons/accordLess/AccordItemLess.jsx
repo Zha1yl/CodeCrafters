@@ -22,8 +22,8 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
         }}
       >
         <div className="accardionles-body" ref={itemRef}>
-          <p>{fagItem.a}</p>
-          <div>
+          <p className="accardionles__text">{fagItem.a}</p>
+          <div className="button__task">
             <NavLink to={"/video"}>
               <button className="button__video">Видео</button>
             </NavLink>

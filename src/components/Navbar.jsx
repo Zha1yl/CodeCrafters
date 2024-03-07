@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./navbar.scss";
 import ModalWindow from "./navbar_modal/ModalWindow";
 import { useNavigate } from "react-router-dom";
+import CodeEditorPage from "../pages/CodeEditorPage";
+import { toggleTheme } from "../helpers/functions";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   // ! Модальное окно
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
@@ -14,6 +15,7 @@ const Navbar = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
 
   // ! Переключение темы
   const [isTheme, setIsTheme] = useState(false);
@@ -49,6 +51,24 @@ const Navbar = () => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  // ! функция которая меняет на темную тему
+  const [isTheme, setIsTheme] = useState(false);
+  const updateThemeState = () => {
+    setIsTheme(document.body.classList.contains("dark-theme"));
+  };
+  useEffect(() => {
+    updateThemeState();
+    const observer = new MutationObserver(() => {
+      updateThemeState();
+    });
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -103,14 +123,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="nav__right">
-        <div
-          className={`nav__theme nav__box ${
-            isTheme
-              ? document.body.classList.add("dark-theme")
-              : document.body.classList.remove("dark-theme")
-          }`}
-          onClick={() => toggleTheme()}
-        >
+        <div className={"nav__theme nav__box"} onClick={() => toggleTheme()}>
           {isTheme ? (
             <svg
               width="15"
@@ -231,10 +244,8 @@ const Navbar = () => {
             />
           </svg>
         </div>
-        <div className="nav__menu nav__box">
-          <p className="nav__box_text" onClick={openModal}>
-            Меню
-          </p>
+        <div className="nav__menu nav__box" onClick={openModal}>
+          <p className="nav__box_text">Меню</p>
         </div>
         <div className="nav__sign-in nav__box">
           <p className="nav__box_text">Войти</p>
@@ -246,6 +257,9 @@ const Navbar = () => {
         windowWidth={windowWidth}
         toggleTheme={toggleTheme}
       />
+      <div style={{ display: "none" }}>
+        <CodeEditorPage />
+      </div>
     </nav>
   );
 };

@@ -12,7 +12,8 @@ const EditCode = () => {
   const toast = useToast();
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = (e) => {
+      console.log(e);
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
       if (screenWidth < 1023 || screenHeight < 392) {
@@ -30,6 +31,7 @@ const EditCode = () => {
     };
 
     window.addEventListener("resize", handleResize);
+    // window.addEventListener("resize", (e) => console.log(e));
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -45,7 +47,24 @@ const EditCode = () => {
     setLanguage(language);
     setValue(CODE_SNIPPETS[language]);
   };
-
+  // ! функция которая меняет на темную тему
+  const [isTheme, setIsTheme] = useState(false);
+  const updateThemeState = () => {
+    setIsTheme(document.body.classList.contains("dark-theme"));
+  };
+  useEffect(() => {
+    updateThemeState();
+    const observer = new MutationObserver(() => {
+      updateThemeState();
+    });
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <Box>
       <HStack spacing={4}>
@@ -54,7 +73,7 @@ const EditCode = () => {
           <Editor
             height="75vh"
             language={language}
-            theme="vs-dark"
+            theme={isTheme ? "vs-dark" : "vs-light"}
             defaultValue={CODE_SNIPPETS[language]}
             onMount={onMount}
             value={value}
@@ -67,7 +86,11 @@ const EditCode = () => {
             }}
           />
         </Box>
-        <OutputCode editorRef={editorRef} language={language} />
+        <OutputCode
+          editorRef={editorRef}
+          language={language}
+          isTheme={isTheme}
+        />
       </HStack>
     </Box>
   );

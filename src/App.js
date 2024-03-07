@@ -1,5 +1,4 @@
-import React from "react";
-import Footer from "./components/footer/Footer";
+import React, { useState } from "react";
 import MainRoutes from "./routes/MainRoutes";
 import Navbar from "./components/Navbar";
 
