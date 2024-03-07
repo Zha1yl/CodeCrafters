@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./modalWindow.scss";
 import { useNavigate } from "react-router-dom";
 
 const ModalWindow = (props) => {
   const navigate = useNavigate();
   const { isOpen, onClose, windowWidth, toggleTheme } = props;
-
   // ! логика модалки
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Обработчик изменения значения поля ввода
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Обработчик нажатия клавиши Enter в поле ввода
+  const handleInputKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // Выполнить поиск Google с текущим значением запроса
+      handleSearch();
+    }
+  };
+
+  // Функция для выполнения поиска Google
+  const handleSearch = () => {
+    window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
+  };
+
   if (!isOpen) return null;
   return (
     <div className="modal">
@@ -31,14 +51,14 @@ const ModalWindow = (props) => {
                     <path
                       d="M5.92 11.34C8.91338 11.34 11.34 8.91338 11.34 5.92C11.34 2.92662 8.91338 0.5 5.92 0.5C2.92662 0.5 0.5 2.92662 0.5 5.92C0.5 8.91338 2.92662 11.34 5.92 11.34Z"
                       stroke="#fff"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M13.5 13.5L9.75 9.75"
                       stroke="#fff"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                   <defs>
@@ -51,7 +71,10 @@ const ModalWindow = (props) => {
               <input
                 type="text"
                 className="modal__input"
-                placeholder="Search 10,700+ tutorials"
+                placeholder="Search google"
+                value={searchQuery}
+                onChange={handleInputChange}
+                onKeyDown={handleInputKeyDown}
               />
             </div>
           </div>
