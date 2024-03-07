@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./modalWindow.scss";
 import { useNavigate } from "react-router-dom";
 
-const ModalWindow = ({ isOpen, onClose, windowWidth, toggleTheme }) => {
+const ModalWindow = (props) => {
   const navigate = useNavigate();
+  const { isOpen, onClose, windowWidth, toggleTheme } = props;
+  // ! логика модалки
+
   const [searchQuery, setSearchQuery] = useState("");
 
   // Обработчик изменения значения поля ввода
@@ -31,6 +34,7 @@ const ModalWindow = ({ isOpen, onClose, windowWidth, toggleTheme }) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
+        {/* // ! появляется инпут когда ширина меньше 951px */}
         {windowWidth < 951 ? (
           <div className="modal__setting modal__setting_first">
             <div className="modal__search">
@@ -75,13 +79,18 @@ const ModalWindow = ({ isOpen, onClose, windowWidth, toggleTheme }) => {
             </div>
           </div>
         ) : null}
-        <div className="modal__setting">
+        {/* // ! добавляется класс когда ширина больше 951px */}
+        <div
+          className={`modal__setting ${
+            windowWidth > 951 ? "modal__setting_first" : null
+          }`}
+        >
           <p className="modal__desc">Profile</p>
         </div>
         <div className="modal__setting" onClick={() => navigate("/donate")}>
           <p className="modal__desc">Donat</p>
         </div>
-        {/* при адаптиве в бургер меню появляются доп пункты */}
+        {/* // ! при адаптиве в бургер меню появляются доп пункты */}
         {windowWidth < 450 ? (
           <>
             <div className="modal__setting" onClick={toggleTheme}>
