@@ -20,7 +20,6 @@ const Navbar = () => {
   const toggleTheme = () => {
     setIsTheme((prevTheme) => !prevTheme);
   };
-
   // Состояние для значения поискового запроса
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -41,7 +40,6 @@ const Navbar = () => {
   const handleSearch = (e) => {
     window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
   };
-
   // ! При адаптиве смена темы и переключения языка заходят в кнопку меню
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
