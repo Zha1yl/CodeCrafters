@@ -85,7 +85,7 @@ const ModalWindow = (props) => {
             windowWidth > 951 ? "modal__setting_first" : null
           }`}
         >
-          <p className="modal__desc">Profile</p>
+          <p className="modal__desc" onClick={()=> navigate("/changepas")}>Profile</p>
         </div>
         <div className="modal__setting" onClick={() => navigate("/donate")}>
           <p className="modal__desc">Donat</p>

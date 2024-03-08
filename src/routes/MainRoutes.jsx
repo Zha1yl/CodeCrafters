@@ -11,6 +11,9 @@ import TasksPage from "../pages/TasksPage";
 import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
 import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
 import AcivateCode from "../pages/AcivateCode";
+import ChangePassword from "../components/auth/ChangePassword";
+import ForgotPassword from "../components/auth/ForgotPassword";
+import ForgotPasswordSolution from "../components/auth/ForgotPasswordSolution";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -25,6 +28,9 @@ const MainRoutes = () => {
     { id: 9, link: "/py", element: <LessonContentPitthon /> },
     { id: 10, link: "/js", element: <LessonComponentJs /> },
     { id: 11, link: "/activate", element: <AcivateCode /> },
+    { id: 12, link: "/changepas", element: <ChangePassword /> },
+    { id: 13, link: "/forgotpas", element: <ForgotPassword /> },
+    { id: 14, link: "/forgotsolution", element: <ForgotPasswordSolution /> },
   ];
   return (
     <div>

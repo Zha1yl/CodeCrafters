@@ -1,20 +1,17 @@
 import React, { useState } from "react";
-import { useAuth } from "../context/AuthContextProvider";
-import "../";
+import "./auth.css";
+import { useAuth } from "../../context/AuthContextProvider";
 
-const AcivateCode = () => {
-  const [activate, setActivate] = useState("");
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const { handleActivate } = useAuth();
-  const handleCode = () => {
-    if (!email.trim() || !activate.trim()) {
+  const { handleForgotPassword } = useAuth();
+  const handleEmail = () => {
+    if (!email.trim()) {
       alert("Заполните все поля");
     } else {
       let formData = new FormData();
       formData.append("email", email);
-      formData.append("code", activate);
-      handleActivate(formData);
-      console.log(formData);
+      handleForgotPassword(formData);
     }
   };
   return (
@@ -24,18 +21,13 @@ const AcivateCode = () => {
           src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
           alt=""
         />
-        <p>Активируйте аккаунт</p>
+        <p>Забыли пароль</p>
         <input
           type="text"
-          placeholder="email"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="код активации"
-          onChange={(e) => setActivate(e.target.value)}
-        />
-        <button onClick={handleCode}>Отправить код</button>
+        <button onClick={handleEmail}>Отправить код</button>
       </div>
       <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является
@@ -49,4 +41,4 @@ const AcivateCode = () => {
   );
 };
 
-export default AcivateCode;
+export default ForgotPassword;

@@ -30,14 +30,14 @@ const Login = () => {
         <input
           type="text"
           onChange={(e) => setEmail(e.target.value)}
-          style={{ color: "black" }}
+          placeholder="Email"
         />
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          style={{ color: "black" }}
+          placeholder="Password"
         />
-        <button onClick={handleSave}>Login</button>
+        <button onClick={handleSave}>Авторизоваться</button>
         <p>
           У вас ещё нет аккаунта?
           <Link
@@ -47,6 +47,7 @@ const Login = () => {
             Зарегистрироваться
           </Link>
         </p>
+        <Link style={{padding:"1vw", color:"blue"}} to={'/forgotpas'}>Забыли пароль?</Link>
       </div>
       <p className="auth-footer">
         codeCrafters бесплатен, и ваша учетная запись по умолчанию является
