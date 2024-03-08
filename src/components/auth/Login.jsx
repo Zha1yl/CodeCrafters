@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import "./auth.css";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContextProvider";
+import { Link } from "react-router-dom";
+import "./auth.css";
 
 const Login = () => {
+  const { handleLogin, error, loader } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin} = useAuth();
   const handleSave = () => {
     if (!email.trim() || !password.trim()) {
-      alert("Fill all inputs!");
+      alert("Заполните все поля!");
     } else {
       let formData = new FormData();
       formData.append("email", email);
@@ -17,6 +17,7 @@ const Login = () => {
       handleLogin(formData, email);
     }
   };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -24,18 +25,19 @@ const Login = () => {
           src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
           alt=""
         />
-        <p>Войдите в бесплатный CodeCrafters Learn</p>
+
+        <p>Войдите в бесплатный CodeCamp Learn</p>
         <input
           type="text"
-          placeholder="Адрес электронной почты"
           onChange={(e) => setEmail(e.target.value)}
+          style={{ color: "black" }}
         />
         <input
           type="password"
-          placeholder="Введите пароль"
           onChange={(e) => setPassword(e.target.value)}
+          style={{ color: "black" }}
         />
-        <button onClick={handleSave}>Авторизоваться</button>
+        <button onClick={handleSave}>Login</button>
         <p>
           У вас ещё нет аккаунта?
           <Link
