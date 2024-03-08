@@ -7,7 +7,9 @@ const Register = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { handleRegister } = useAuth();
+  const [confirmationCode, setConfirmationCode] = useState("");
+
+  const { handleRegister, error, handleConfirmAccount } = useAuth();
   const handleSave = () => {
     if (
       !email.trim() ||
@@ -22,7 +24,12 @@ const Register = () => {
       formData.append("name", name);
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
-      handleRegister(formData);
+      try {
+        handleRegister(formData);
+        handleConfirmAccount(email, confirmationCode);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
@@ -38,7 +45,6 @@ const Register = () => {
           type="text"
           placeholder="Имя пользователя"
           onChange={(e) => setName(e.target.value)}
-
         />
         <input
           type="text"
@@ -54,6 +60,13 @@ const Register = () => {
           type="password"
           placeholder="Повторите пароль"
           onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Код подтверждения"
+          value={confirmationCode}
+          onChange={(e) => setConfirmationCode(e.target.value)}
+        />
 
         <button onClick={handleSave}>Зарегистрироваться</button>
         <p>
