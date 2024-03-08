@@ -10,6 +10,7 @@ import VideoPage from "../pages/VideoPage";
 import TasksPage from "../pages/TasksPage";
 import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
 import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
+import AcivateCode from "../pages/AcivateCode";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -23,6 +24,7 @@ const MainRoutes = () => {
     { id: 8, link: "/tasks", element: <TasksPage /> },
     { id: 9, link: "/py", element: <LessonContentPitthon /> },
     { id: 10, link: "/js", element: <LessonComponentJs /> },
+    { id: 11, link: "/activate", element: <AcivateCode /> },
   ];
   return (
     <div>
