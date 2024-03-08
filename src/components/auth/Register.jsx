@@ -22,7 +22,12 @@ const Register = () => {
       formData.append("name", name);
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
-      handleRegister(formData);
+      try {
+        handleRegister(formData);
+        handleConfirmAccount(email, confirmationCode);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -40,7 +45,6 @@ const Register = () => {
           placeholder="Имя пользователя"
 
           onChange={(e) => setName(e.target.value)}
-
         />
 
         <input
@@ -58,6 +62,13 @@ const Register = () => {
           type="password"
           placeholder="password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Код подтверждения"
+          value={confirmationCode}
+          onChange={(e) => setConfirmationCode(e.target.value)}
+        />
 
         <button onClick={handleSave}>register</button>
         <p>
