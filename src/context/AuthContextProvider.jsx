@@ -10,7 +10,6 @@ const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loader, setLoader] = useState(false);
   //! Register
-
   const handleRegister = async (formData) => {
     try {
       await axios.post(`${API_COURSES}/register/`, formData);
@@ -27,6 +26,7 @@ const AuthContextProvider = ({ children }) => {
       navigate("/login");
     } catch (error) {
       setError(Object.values(error.response.data));
+      console.log(error);
     }
   };
   //! Login
@@ -44,6 +44,7 @@ const AuthContextProvider = ({ children }) => {
       setLoader(false);
     }
   };
+
   //! checkAuth
   // const checkAuth = async () => {
   //   try {
@@ -61,7 +62,6 @@ const AuthContextProvider = ({ children }) => {
   //     console.log(error);
   //   }
   // };
-
   const values = {
     handleRegister,
     error,
