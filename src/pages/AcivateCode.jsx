@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContextProvider";
+import { useAuth } from "../context/AuthContextProvider";
+import "../";
 import { Link } from "react-router-dom";
-import "./auth.css";
 
-const Login = () => {
-  const { handleLogin, error, loader } = useAuth();
+const AcivateCode = () => {
+  const [activate, setActivate] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleSave = () => {
-    if (!email.trim() || !password.trim()) {
-      alert("Заполните все поля!");
+  const { handleActivate, error } = useAuth();
+  const handleCode = () => {
+    if (!email.trim() || !activate.trim()) {
+      alert("Заполните все поля");
     } else {
       let formData = new FormData();
       formData.append("email", email);
-      formData.append("password", password);
-      handleLogin(formData, email);
+      formData.append("code", activate);
+      handleActivate(formData);
+      console.log(formData);
     }
   };
-
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -25,27 +25,18 @@ const Login = () => {
           src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
           alt=""
         />
-        <p>Войдите в бесплатный CodeCamp Learn</p>
+        <p>Активируйте аккаунт</p>
         <input
           type="text"
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
-          style={{ color: "black" }}
         />
         <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ color: "black" }}
+          type="text"
+          placeholder="код активации"
+          onChange={(e) => setActivate(e.target.value)}
         />
-        <button onClick={handleSave}>Login</button>
-        <p>
-          У вас ещё нет аккаунта?
-          <Link
-            style={{ textDecoration: "none", color: "blue" }}
-            to="/register"
-          >
-            Зарегистрироваться
-          </Link>
-        </p>
+        <button onClick={handleCode}>Отправить код</button>
       </div>
       <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является
@@ -59,4 +50,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AcivateCode;

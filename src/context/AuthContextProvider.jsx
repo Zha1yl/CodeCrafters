@@ -14,27 +14,37 @@ const AuthContextProvider = ({ children }) => {
   const handleRegister = async (formData) => {
     try {
       await axios.post(`${API_COURSES}/register/`, formData);
+      navigate("/activate");
+    } catch (error) {
+      setError(Object.values(error.response.data));
+    }
+  };
+
+  //! ACTIVATE
+  const handleActivate = async (formData) => {
+    try {
+      await axios.post(`${API_COURSES}/activate/`, formData);
       navigate("/login");
     } catch (error) {
-      setError(Object.values(error.response));
+      setError(Object.values(error.response.data));
     }
   };
   //! Login
   const handleLogin = async (formData, email) => {
     try {
       setLoader(true);
-      const response = await axios.post(`${API_COURSES}/login/`, formData);
-      localStorage.setItem("tokens", JSON.stringify(response));
+      const { data } = await axios.post(`${API_COURSES}/login/`, formData);
+      localStorage.setItem("tokens", JSON.stringify(data));
       localStorage.setItem("email", JSON.stringify(email));
       setCurrentUser(email);
       navigate("/");
     } catch (error) {
-      setError(Object.values(error.response));
+      setError(Object.values(error.response.data));
     } finally {
       setLoader(false);
     }
   };
-  // //! checkAuth
+  //! checkAuth
   // const checkAuth = async () => {
   //   try {
   //     const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -52,21 +62,14 @@ const AuthContextProvider = ({ children }) => {
   //   }
   // };
 
-  //! logout
-  // const handleLogout = () => {
-  //   localStorage.removeItem("tokens");
-  //   localStorage.removeItem("email");
-  //   setCurrentUser(null);
-  //   navigate("/login");
-  // };
   const values = {
     handleRegister,
     error,
     handleLogin,
     currentUser,
     loader,
+    handleActivate,
     // checkAuth,
-    // handleLogout,
   };
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
 };
