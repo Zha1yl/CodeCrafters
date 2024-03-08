@@ -16,12 +16,6 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-
-  // ! Переключение темы
-  const [isTheme, setIsTheme] = useState(false);
-  const toggleTheme = () => {
-    setIsTheme((prevTheme) => !prevTheme);
-  };
   // Состояние для значения поискового запроса
   const [searchQuery, setSearchQuery] = useState("");
 
