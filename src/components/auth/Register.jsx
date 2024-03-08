@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContextProvider";
 
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const { handleRegister } = useAuth();
+  const handleSave = () => {
+    if (
+      !email.trim() ||
+      !password.trim() ||
+      !name.trim() ||
+      !passwordConfirm.trim()
+    ) {
+      alert("Заполните поля!");
+    } else {
+      let formData = new FormData();
+      formData.append("email", email);
+      formData.append("name", name);
+      formData.append("password", password);
+      formData.append("password_confirm", passwordConfirm);
+      handleRegister(formData);
+    }
+  };
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -10,13 +33,30 @@ const Register = () => {
           alt=""
         />
         <p>Войдите в бесплатный CodeCrafters Learn</p>
-        <input type="text" placeholder="Адрес электронной почты" />
-        <input type="password" placeholder="Введите пароль" />
-        <input type="password" placeholder="Повторите пароль" />
-        <button>Зарегистрироваться</button>
+        <input
+          type="text"
+          placeholder="Имя пользователя"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Адрес электронной почты"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Введите пароль"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Повторите пароль"
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <button onClick={handleSave}>Зарегистрироваться</button>
         <p>
           У вас уже есть аккаунт?
-          <Link style={{ textDecoration: "none", color:"blue" }} to="/login">
+          <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
             Авторизация
           </Link>
         </p>

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./auth.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContextProvider";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { handleLogin} = useAuth();
+  const handleSave = () => {
+    if (!email.trim() || !password.trim()) {
+      alert("Fill all inputs!");
+    } else {
+      let formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", password);
+      handleLogin(formData, email);
+    }
+  };
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -11,9 +25,17 @@ const Login = () => {
           alt=""
         />
         <p>Войдите в бесплатный CodeCrafters Learn</p>
-        <input type="text" placeholder="Адрес электронной почты" />
-        <input type="password" placeholder="Введите пароль" />
-        <button>Авторизоваться</button>
+        <input
+          type="text"
+          placeholder="Адрес электронной почты"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Введите пароль"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleSave}>Авторизоваться</button>
         <p>
           У вас ещё нет аккаунта?
           <Link
