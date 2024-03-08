@@ -151,32 +151,32 @@ body {
 //   color: blueviolet !important;
 // }
 
-  .accardionles-item {
-    background-color: #3b3b4f;
-  }
-  .accardionles-header {
-    background-color: #3b3b4f;
-    color: #fff;
-  }
-  .accardionles-body {
-    color: #fff;
-    background-color: #3b3b4f;
-  }
-  .button__video {
-    background-color: #1c1c25;
-    color: #fff;
-  }
-  .button__video:hover {
-    background-color: #35355a;
-    box-shadow: #fff 0px 7px 29px 0px;
-  }
-  .block1 {
-    border-color: #133547;
-    font-size: 18px;
-    width: 60vw;
+.accardionles-item {
+  background-color: #3b3b4f;
+}
+.accardionles-header {
+  background-color: #3b3b4f;
+  color: #fff;
+}
+.accardionles-body {
+  color: #fff;
+  background-color: #3b3b4f;
+}
+.button__video {
+  background-color: #1c1c25;
+  color: #fff;
+}
+.button__video:hover {
+  background-color: #35355a;
+  box-shadow: #fff 0px 7px 29px 0px;
+}
+.block1 {
+  border-color: #133547;
+  font-size: 18px;
+  width: 60vw;
 
-    margin: 36px 0 25px 0;
-    padding: 15px;
+  margin: 36px 0 25px 0;
+  padding: 15px;
 
     overflow-wrap: break-word;
     background-color: #d9edf7;
@@ -224,7 +224,6 @@ body {
       radial-gradient(circle, #ffcae1 0, #daeafc 100%);
     padding: 1rem;
   }
-
 // hsl(244, 23%, 66%)
 
 img {

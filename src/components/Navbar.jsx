@@ -4,9 +4,17 @@ import ModalWindow from "./navbar_modal/ModalWindow";
 import { useNavigate } from "react-router-dom";
 import CodeEditorPage from "../pages/CodeEditorPage";
 import { toggleTheme } from "../helpers/functions";
+import { useAuth } from "../context/AuthContextProvider";
 
 const Navbar = () => {
+  const { currentUser, checkAuth, logout } = useAuth();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("tokens")) {
+      checkAuth();
+    }
+  }, []);
+
   // ! Модальное окно
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
@@ -15,9 +23,6 @@ const Navbar = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
-
-
   // Состояние для значения поискового запроса
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -244,7 +249,19 @@ const Navbar = () => {
           <p className="nav__box_text">Меню</p>
         </div>
         <div className="nav__sign-in nav__box">
-          <p className="nav__box_text">Войти</p>
+          {currentUser ? currentUser : null}
+          {currentUser ? (
+            <button onClick={logout} className="nav__box_text">
+              Выйти
+            </button>
+          ) : (
+            <button
+              className="nav__box_text"
+              onClick={() => navigate("/login")}
+            >
+              Войти
+            </button>
+          )}
         </div>
       </div>
       <ModalWindow
