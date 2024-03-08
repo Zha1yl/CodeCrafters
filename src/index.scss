@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 body {
+  cursor: context-menu;
   color: black !important;
   background-color: #fff !important;
   transition: 1s;
@@ -43,6 +44,7 @@ body {
   .css-xbax5b {
     background-color: #3b3b4f !important;
   }
+  // ! Стили Амиры
   .accardionles-item {
     background-color: #3b3b4f;
   }
@@ -66,10 +68,8 @@ body {
     border-color: #133547;
     font-size: 18px;
     width: 60vw;
-
     margin: 36px 0 25px 0;
     padding: 15px;
-
     overflow-wrap: break-word;
     background-color: #d9edf7;
     border-color: #bce8f1;
@@ -170,6 +170,16 @@ body {
   background-color: #35355a;
   box-shadow: #fff 0px 7px 29px 0px;
 }
+.css-xbax5b {
+  background-color: rgb(207, 205, 205);
+}
+.css-1nfijbh {
+  background-color: #fff;
+}
+// .mtk1 {
+//   color: blueviolet !important;
+// }
+
 .block1 {
   border-color: #133547;
   font-size: 18px;
@@ -224,6 +234,7 @@ body {
       radial-gradient(circle, #ffcae1 0, #daeafc 100%);
     padding: 1rem;
   }
+
 // hsl(244, 23%, 66%)
 
 img {
