@@ -67,11 +67,6 @@ const HomePage = () => {
         <div className="main__btn">
 
           <button className="main__button" onClick={() => navigate("/login")}>Войдите чтобы начать</button>
-          
-
-          <button className="main__button" onClick={() => navigate("/login")}>
-            Войдите чтобы начать
-          </button>
 
         </div>
 
