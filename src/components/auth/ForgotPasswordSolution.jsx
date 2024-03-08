@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
-import { Link } from "react-router-dom";
 
-const Register = () => {
-  const [name, setName] = useState("");
+const ForgotPasswordSolution = () => {
+  const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { handleRegister, handleActivate, error } = useAuth();
+  const { forgotPasswordSolution, error } = useAuth();
   const handleSave = () => {
     if (
       !email.trim() ||
       !password.trim() ||
-      !name.trim() ||
+      !code.trim() ||
       !passwordConfirm.trim()
     ) {
       alert("Заполните поля!");
     } else {
       let formData = new FormData();
       formData.append("email", email);
-      formData.append("name", name);
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
-      handleRegister(formData);
-      handleActivate(formData);
+      formData.append("code", code);
+      forgotPasswordSolution(formData);
     }
   };
 
@@ -38,16 +36,9 @@ const Register = () => {
         <p>Войдите в бесплатный CodeCrafters Learn</p>
         <input
           type="text"
-          placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <input
-          type="text"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-
         <input
           type="password"
           placeholder="Password"
@@ -58,13 +49,12 @@ const Register = () => {
           placeholder="Confirm password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <button onClick={handleSave}>Регистрация</button>
-        <p>
-          У вас уже есть аккаунт?
-          <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
-            Авторизация
-          </Link>
-        </p>
+        <input
+          type="text"
+          placeholder="Code"
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <button onClick={handleSave}>Подтвердить</button>
       </div>
       <p className="auth-footer">
         codeCrafters бесплатен, и ваша учетная запись по умолчанию является
@@ -78,4 +68,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ForgotPasswordSolution;

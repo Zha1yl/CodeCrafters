@@ -248,8 +248,8 @@ const Navbar = () => {
         <div className="nav__menu nav__box" onClick={openModal}>
           <p className="nav__box_text">Меню</p>
         </div>
+        {currentUser ? currentUser : null}
         <div className="nav__sign-in nav__box">
-          {currentUser ? currentUser : null}
           {currentUser ? (
             <button onClick={logout} className="nav__box_text">
               Выйти
