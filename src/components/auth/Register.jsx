@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContextProvider";
+import { Link } from "react-router-dom";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { handleRegister } = useAuth();
+  const { handleRegister, handleActivate, error } = useAuth();
   const handleSave = () => {
     if (
       !email.trim() ||
@@ -25,6 +25,7 @@ const Register = () => {
       handleRegister(formData);
     }
   };
+
   return (
     <div className="auth-container">
       {error ? <h2>{error}</h2> : null}
@@ -37,25 +38,28 @@ const Register = () => {
         <input
           type="text"
           placeholder="Имя пользователя"
+
           onChange={(e) => setName(e.target.value)}
 
         />
+
         <input
           type="text"
-          placeholder="Адрес электронной почты"
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
+
         <input
           type="password"
-          placeholder="Введите пароль"
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Повторите пароль"
+          placeholder="password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
 
-        <button onClick={handleSave}>Зарегистрироваться</button>
+        <button onClick={handleSave}>register</button>
         <p>
           У вас уже есть аккаунт?
           <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
