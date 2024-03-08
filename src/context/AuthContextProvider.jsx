@@ -1,29 +1,19 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { API_COURSES } from "../helpers/api";
 const authContext = createContext();
 export const useAuth = () => useContext(authContext);
-
 const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
-  // !Регистрация
+  const [error, setError] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loader, setLoader] = useState(false);
+  //! Register
   const handleRegister = async (formData) => {
     try {
       await axios.post(`${API_COURSES}/register/`, formData);
       navigate("/login");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  // !LOGIN
-  const handleLogin = async (formData, email) => {
-    try {
-      const { data } = await axios.post(`${API_COURSES}/login/`, formData);
-      localStorage.setItem("tokens", JSON.stringify(data));
-      localStorage.setItem("email", JSON.stringify(email));
-      setCurrentUser(email);
     } catch (error) {
       console.log(error);
     }
@@ -56,12 +46,33 @@ const AuthContextProvider = ({ children }) => {
     navigate("/login");
   };
 
+      setError(Object.values(error.response));
+    }
+  };
+  //! Login
+  const handleLogin = async (formData, email) => {
+    try {
+      setLoader(true);
+      const response = await axios.post(`${API_COURSES}/login/`, formData);
+      localStorage.setItem("tokens", JSON.stringify(response));
+      localStorage.setItem("email", JSON.stringify(email));
+      setCurrentUser(email);
+      navigate("/");
+    } catch (error) {
+      setError(Object.values(error.response));
+    } finally {
+      setLoader(false);
+    }
+  };
   const values = {
     handleRegister,
+    error,
     handleLogin,
-    checkAuth,
-    logout,
     currentUser,
+    loader,
+     checkAuth,
+     handleLogout,
+
   };
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
 };

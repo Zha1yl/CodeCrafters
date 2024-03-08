@@ -27,6 +27,7 @@ const Register = () => {
   };
   return (
     <div className="auth-container">
+      {error ? <h2>{error}</h2> : null}
       <div className="auth-card">
         <img
           src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
@@ -37,6 +38,7 @@ const Register = () => {
           type="text"
           placeholder="Имя пользователя"
           onChange={(e) => setName(e.target.value)}
+
         />
         <input
           type="text"
@@ -52,7 +54,7 @@ const Register = () => {
           type="password"
           placeholder="Повторите пароль"
           onChange={(e) => setPasswordConfirm(e.target.value)}
-        />
+
         <button onClick={handleSave}>Зарегистрироваться</button>
         <p>
           У вас уже есть аккаунт?
