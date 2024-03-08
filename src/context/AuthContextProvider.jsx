@@ -22,28 +22,19 @@ const AuthContextProvider = ({ children }) => {
   const handleRegister = async (formData) => {
     try {
       await axios.post(`${API_COURSES}/register/`, formData);
-      navigate("/login");
+      navigate("/activate");
     } catch (error) {
-      console.log(error);
+      setError(Object.values(error.response.data));
     }
   };
-  // !CHECKAUTH
-  const checkAuth = async () => {
+
+  //! ACTIVATE
+  const handleActivate = async (formData) => {
     try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
-      const { data } = await axios.post(`${API_COURSES}/refresh/`, {
-        refresh: tokens.refresh,
-      });
-      localStorage.setItem(
-        "tokens",
-        JSON.stringify({
-          access: data,
-          refresh: tokens.refresh,
-        })
-      );
-      const email = localStorage.getItem("email");
-      setCurrentUser(email);
+      await axios.post(`${API_COURSES}/activate/`, formData);
+      navigate("/login");
     } catch (error) {
+      setError(Object.values(error.response.data));
       console.log(error);
     }
   };
@@ -58,30 +49,48 @@ const AuthContextProvider = ({ children }) => {
   const handleLogin = async (formData, email) => {
     try {
       setLoader(true);
-      const response = await axios.post(`${API_COURSES}/login/`, formData);
-      localStorage.setItem("tokens", JSON.stringify(response));
+      const { data } = await axios.post(`${API_COURSES}/login/`, formData);
+      localStorage.setItem("tokens", JSON.stringify(data));
       localStorage.setItem("email", JSON.stringify(email));
       setCurrentUser(email);
       navigate("/");
     } catch (error) {
-      setError(Object.values(error.response));
+      setError(Object.values(error.response.data));
     } finally {
       setLoader(false);
     }
   };
+
+  //! checkAuth
+  // const checkAuth = async () => {
+  //   try {
+  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
+  //     const { data } = await axios.post(`${API_COURSES}/refresh/`, {
+  //       refresh: tokens.refresh,
+  //     });
+  //     localStorage.setItem(
+  //       "tokens",
+  //       JSON.stringify({ access: data, refresh: tokens.refresh })
+  //     );
+  //     const email = JSON.parse(localStorage.getItem("email"));
+  //     setCurrentUser(email);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const values = {
     handleRegister,
     error,
     handleLogin,
     currentUser,
     loader,
-    checkAuth,
     logout,
-    handleConfirmAccount,
+    handleActivate,
+    checkAuth,
   };
   return (
     <authContext.Provider value={values}>
-      {children} <ConfirmationPage />
+      {children}
     </authContext.Provider>
   );
 };
