@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./auth.css";
 import { useAuth } from "../../context/AuthContextProvider";
-import SpinnerLoad from "../../pages/Spinner";
+import Loader from "../../loading/Loader";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     }
   };
   if (loader) {
-    return <SpinnerLoad />;
+    return <Loader />;
   }
   return (
     <div className="auth-container">
