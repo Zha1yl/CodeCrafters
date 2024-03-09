@@ -11,6 +11,8 @@ import TasksPage from "../pages/TasksPage";
 import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
 import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
 
+import Loader from "../loading/Loader";
+
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
     { id: 1, link: "/", element: <HomePage /> },
@@ -23,6 +25,7 @@ const MainRoutes = () => {
     { id: 8, link: "/tasks", element: <TasksPage /> },
     { id: 9, link: "/py", element: <LessonContentPitthon /> },
     { id: 10, link: "/js", element: <LessonComponentJs /> },
+    { id: 11, link: "/loader", element: <Loader /> },
   ];
   return (
     <div>
