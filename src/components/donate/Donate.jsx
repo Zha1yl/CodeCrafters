@@ -96,7 +96,6 @@ const Donate = () => {
           <button className="poje">Пожертвовать</button>
         </div>
       </div>
-    
       <br />
       <div className="status">
         <h2 className="h2">Преимущества от статуса спонсора:</h2>

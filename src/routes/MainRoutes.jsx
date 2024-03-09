@@ -11,9 +11,13 @@ import TasksPage from "../pages/TasksPage";
 import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
 import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
 import AcivateCode from "../pages/AcivateCode";
+import AddLessons from "../pages/AddLessons";
 import ChangePassword from "../components/auth/ChangePassword";
 import ForgotPassword from "../components/auth/ForgotPassword";
 import ForgotPasswordSolution from "../components/auth/ForgotPasswordSolution";
+
+
+import Loader from "../loading/Loader";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -31,6 +35,8 @@ const MainRoutes = () => {
     { id: 12, link: "/changepas", element: <ChangePassword /> },
     { id: 13, link: "/forgotpas", element: <ForgotPassword /> },
     { id: 14, link: "/forgotsolution", element: <ForgotPasswordSolution /> },
+    { id: 15, link: "/addlesson", element: <AddLessons /> },
+     { id: 16, link: "/loader", element: <Loader /> },
   ];
   return (
     <div>

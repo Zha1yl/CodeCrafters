@@ -40,7 +40,7 @@ const Register = () => {
         <p>Войдите в бесплатный CodeCrafters Learn</p>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Имя пользователя"
           onChange={(e) => setName(e.target.value)}
         />
 

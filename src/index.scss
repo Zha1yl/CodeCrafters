@@ -13,6 +13,9 @@ body {
   background-color: #3b3b4f !important;
   color: #fff !important;
   transition: 0.5s;
+  .nav__input {
+    border: 2px solid #fff !important;
+  }
   .section__block {
     background-color: #3b3b4f !important;
   }
@@ -43,6 +46,37 @@ body {
   }
   .css-xbax5b {
     background-color: #3b3b4f !important;
+  }
+  .addlessons__container {
+    background-color: #1c1c25 !important;
+    transition: 0.3s;
+    .addlessons__left {
+      border-right: 1px solid rgb(52, 50, 50);
+    }
+    .addlessons__textfield {
+      background-color: #3b3b4f !important;
+      color: #fff !important;
+      border: 2px solid #fff !important;
+    }
+    .addlessons__textfield_top {
+      background-color: #3b3b4f !important;
+      color: #fff !important;
+      border: 2px solid #fff !important;
+    }
+    .addlessons__textfield_small {
+      background-color: #3b3b4f !important;
+      border: 2px solid #fff !important;
+    }
+    .addlessons__textfield_big {
+      background-color: #3b3b4f !important;
+      border: 2px solid #fff !important;
+    }
+  }
+  .addlessons__svg {
+    fill: #fff;
+    path {
+      stroke: rgb(144, 143, 143);
+    }
   }
   // ! Стили Амиры
   .accardionles-item {
@@ -116,30 +150,51 @@ body {
       radial-gradient(circle, #ffcae1 0, #daeafc 100%);
     padding: 1rem;
   }
+// ! amira
+  .try {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 100vw;
+    margin: 0 auto;
+    background: linear-gradient(
+        -10deg,
+        #3a3a51 35%,
+        rgba(237, 202, 216, 0) 75%,
+        #7f1e34
+      ),
+      radial-gradient(circle, #700030 0, #003f88 100%);
+    position: relative;
+  }
+  .privet {
+    color: #fff;
+    opacity: 1;
+  }
+}
+.css-xbax5b {
+  background-color: rgb(207, 205, 205);
+}
   // ! iska
   .hello {
     color: #ffffff;
   }
-  .poje{
+  .poje {
     background-color: #1c1c25;
   }
 
-  .accardion{
+  .accardion {
     background-color: #1c1c25;
   }
 
-  .accardion-header{
+  .accardion-header {
     background-color: #4d4d60;
     color: #ffffff;
   }
 
-  .accardion-body{
+  .accardion-body {
     background-color: #133547;
     color: #fff;
   }
-
-  
-  
 }
 .css-xbax5b {
   background-color: rgb(207, 205, 205);
@@ -173,6 +228,7 @@ body {
 .css-xbax5b {
   background-color: rgb(207, 205, 205);
 }
+
 .css-1nfijbh {
   background-color: #fff;
 }
@@ -188,52 +244,52 @@ body {
   margin: 36px 0 25px 0;
   padding: 15px;
 
-    overflow-wrap: break-word;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-    color: #31708f;
-    border: 1px solid transparent;
-    padding: 15px;
-    margin-bottom: 25px;
-  }
-  .button_lesson2 {
-    border: 3px solid #2d6786;
-    background-color: #d9edf7;
-    color: #31708f;
-    font-size: 18px;
-    width: 200px;
-    height: 45px;
-    margin-top: 30px;
-    margin-bottom: 35px;
-  }
-  .button_lesson {
-    color: #31708f;
-    width: 200px;
-    height: 45px;
-    font-size: 18px;
-    background-color: #d9edf7;
-    cursor: pointer;
-    margin-top: 20px;
-    border: 3px solid #2d6786;
-    margin-bottom: 35px;
-  }
-  .block2__text {
-    border-bottom: 1px solid #6fa5c2;
-    padding-bottom: 30px;
-  }
-  .block2 {
-    width: 60vw !important;
-    /* height: 134px; */
-    color: #31708f;
-    background: linear-gradient(
-        -10deg,
-        #d9edf7 35%,
-        rgba(237, 202, 216, 0) 75%,
-        #ffd7e0
-      ),
-      radial-gradient(circle, #ffcae1 0, #daeafc 100%);
-    padding: 1rem;
-  }
+  overflow-wrap: break-word;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+  border: 1px solid transparent;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+.button_lesson2 {
+  border: 3px solid #2d6786;
+  background-color: #d9edf7;
+  color: #31708f;
+  font-size: 18px;
+  width: 200px;
+  height: 45px;
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+.button_lesson {
+  color: #31708f;
+  width: 200px;
+  height: 45px;
+  font-size: 18px;
+  background-color: #d9edf7;
+  cursor: pointer;
+  margin-top: 20px;
+  border: 3px solid #2d6786;
+  margin-bottom: 35px;
+}
+.block2__text {
+  border-bottom: 1px solid #6fa5c2;
+  padding-bottom: 30px;
+}
+.block2 {
+  width: 60vw !important;
+  /* height: 134px; */
+  color: #31708f;
+  background: linear-gradient(
+      -10deg,
+      #d9edf7 35%,
+      rgba(237, 202, 216, 0) 75%,
+      #ffd7e0
+    ),
+    radial-gradient(circle, #ffcae1 0, #daeafc 100%);
+  padding: 1rem;
+}
 
 // hsl(244, 23%, 66%)
 
