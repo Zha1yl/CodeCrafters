@@ -38,7 +38,7 @@ const Register = () => {
         <p>Войдите в бесплатный CodeCrafters Learn</p>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Имя пользователя"
           onChange={(e) => setName(e.target.value)}
         />
 
@@ -59,6 +59,7 @@ const Register = () => {
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
         <button onClick={handleSave}>Регистрация</button>
+
         <p>
           У вас уже есть аккаунт?
           <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
