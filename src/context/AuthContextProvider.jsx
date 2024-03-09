@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_COURSES } from "../helpers/api";
+import ConfirmationPage from "../pages/ConfirmAccount";
 const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 const AuthContextProvider = ({ children }) => {
@@ -9,6 +10,14 @@ const AuthContextProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [loader, setLoader] = useState(false);
+  // !confirm
+  const handleConfirmAccount = async (email, code) => {
+    try {
+      const res = await axios.post(`${API_COURSES}/activate/`, { email, code });
+    } catch (error) {
+      setError("Неверный код подтверждения");
+    }
+  };
   //! Register
   const handleRegister = async (formData) => {
     try {
@@ -16,17 +25,6 @@ const AuthContextProvider = ({ children }) => {
       navigate("/activate");
     } catch (error) {
       setError(Object.values(error.response.data));
-    }
-  };
-
-  //! ACTIVATE
-  const handleActivate = async (formData) => {
-    try {
-      await axios.post(`${API_COURSES}/activate/`, formData);
-      navigate("/login");
-    } catch (error) {
-      setError(Object.values(error.response.data));
-      console.log(error);
     }
   };
   //! Login
@@ -45,7 +43,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  //! checkAuth
+  // !CHECKAUTH
   const checkAuth = async () => {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -54,12 +52,63 @@ const AuthContextProvider = ({ children }) => {
       });
       localStorage.setItem(
         "tokens",
-        JSON.stringify({ access: data, refresh: tokens.refresh })
+        JSON.stringify({
+          access: data,
+          refresh: tokens.refresh,
+        })
       );
       const email = JSON.parse(localStorage.getItem("email"));
       setCurrentUser(email);
     } catch (error) {
       console.log(error);
+    }
+  };
+  // !logout
+  const logout = () => {
+    localStorage.removeItem("tokens");
+    localStorage.removeItem("email");
+    setCurrentUser(null);
+    navigate("/login");
+  };
+
+  //! ACTIVATE
+  const handleActivate = async (formData) => {
+    try {
+      await axios.post(`${API_COURSES}/activate/`, formData);
+      navigate("/login");
+    } catch (error) {
+      setError(Object.values(error.response.data));
+      console.log(error);
+    }
+  };
+  // !CHANGE PASSWORD
+  const handleChangePassword = async (oldPassword, newPassword) => {
+    try {
+      await axios.post(`${API_COURSES}/ChangePassword/`, {
+        oldPassword,
+        newPassword,
+      });
+      navigate("/");
+    } catch (error) {
+      setError(Object.values(error.response.data));
+    }
+  };
+  // !FORGOT PASSWORD
+  const handleForgotPassword = async (formData) => {
+    try {
+      await axios.post(`${API_COURSES}/ForgotPassword/`, formData);
+      navigate("/forgotsolution");
+    } catch (error) {
+      setError(Object.values(error.response.data));
+    }
+  };
+  // ! FORGOT PASSWORD SOLUTION
+  const forgotPasswordSolution = async (formData) => {
+    try {
+      await axios.post(`${API_COURSES}/ForgotPasswordSolution/`, formData);
+      navigate("/login");
+    } catch (error) {
+      setError(Object.values(error.response.data));
     }
   };
   const values = {
@@ -68,10 +117,18 @@ const AuthContextProvider = ({ children }) => {
     handleLogin,
     currentUser,
     loader,
-    handleActivate,
     checkAuth,
+    logout,
+    handleActivate,
+    handleChangePassword,
+    handleForgotPassword,
+    forgotPasswordSolution,
   };
-  return <authContext.Provider value={values}>{children}</authContext.Provider>;
+  return (
+    <authContext.Provider value={values}>
+      {children}
+    </authContext.Provider>
+  );
 };
 
 export default AuthContextProvider;

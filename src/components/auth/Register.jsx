@@ -23,6 +23,7 @@ const Register = () => {
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
       handleRegister(formData);
+      handleActivate(formData);
     }
   };
 
@@ -43,22 +44,22 @@ const Register = () => {
 
         <input
           type="text"
-          placeholder="email"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Confirm password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
+        <button onClick={handleSave}>Регистрация</button>
 
-        <button onClick={handleSave}>register</button>
         <p>
           У вас уже есть аккаунт?
           <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
