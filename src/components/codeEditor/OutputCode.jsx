@@ -35,7 +35,7 @@ const OutputCode = ({ editorRef, language }) => {
       </Text>
       <Button
         variant="outline"
-        colorScheme="green"
+        colorScheme="dark"
         mb={4}
         isLoading={isLoading}
         onClick={runCode}
