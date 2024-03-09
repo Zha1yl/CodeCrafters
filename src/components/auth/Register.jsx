@@ -38,9 +38,7 @@ const Register = () => {
         <input
           type="text"
           placeholder="Имя пользователя"
-
           onChange={(e) => setName(e.target.value)}
-
         />
 
         <input
@@ -58,6 +56,7 @@ const Register = () => {
           type="password"
           placeholder="password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
 
         <button onClick={handleSave}>register</button>
         <p>

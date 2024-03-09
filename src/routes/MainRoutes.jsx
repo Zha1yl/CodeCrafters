@@ -11,6 +11,7 @@ import TasksPage from "../pages/TasksPage";
 import LessonContentPitthon from "../components/lessons/pithon/LessonContentPitthon";
 import LessonComponentJs from "../components/lessons/js/LessonComponentJs";
 import AcivateCode from "../pages/AcivateCode";
+import AddLessons from "../pages/AddLessons";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -25,6 +26,7 @@ const MainRoutes = () => {
     { id: 9, link: "/py", element: <LessonContentPitthon /> },
     { id: 10, link: "/js", element: <LessonComponentJs /> },
     { id: 11, link: "/activate", element: <AcivateCode /> },
+    { id: 12, link: "/addlesson", element: <AddLessons /> },
   ];
   return (
     <div>

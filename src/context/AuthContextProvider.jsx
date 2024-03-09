@@ -46,22 +46,22 @@ const AuthContextProvider = ({ children }) => {
   };
 
   //! checkAuth
-  // const checkAuth = async () => {
-  //   try {
-  //     const tokens = JSON.parse(localStorage.getItem("tokens"));
-  //     const { data } = await axios.post(`${API_COURSES}/refresh/`, {
-  //       refresh: tokens.refresh,
-  //     });
-  //     localStorage.setItem(
-  //       "tokens",
-  //       JSON.stringify({ access: data, refresh: tokens.refresh })
-  //     );
-  //     const email = JSON.parse(localStorage.getItem("email"));
-  //     setCurrentUser(email);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const checkAuth = async () => {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const { data } = await axios.post(`${API_COURSES}/refresh/`, {
+        refresh: tokens.refresh,
+      });
+      localStorage.setItem(
+        "tokens",
+        JSON.stringify({ access: data, refresh: tokens.refresh })
+      );
+      const email = JSON.parse(localStorage.getItem("email"));
+      setCurrentUser(email);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const values = {
     handleRegister,
     error,
@@ -69,7 +69,7 @@ const AuthContextProvider = ({ children }) => {
     currentUser,
     loader,
     handleActivate,
-    // checkAuth,
+    checkAuth,
   };
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
 };
