@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import { Link } from "react-router-dom";
 import "./auth.css";
-import SpinnerLoad from "../../pages/Spinner";
+import Loader from "../../loading/Loader";
 
 const Login = () => {
   const { handleLogin, error, loader } = useAuth();
@@ -20,7 +20,7 @@ const Login = () => {
     }
   };
   if (loader) {
-    return <SpinnerLoad />;
+    return <Loader />;
   }
 
   return (
@@ -49,7 +49,9 @@ const Login = () => {
           Показать пароль
           {showPassword ? "🙈" : "👁️"}
         </button>
-        <button className="auth-card-btn" onClick={handleSave}>Авторизоваться</button>
+        <button className="auth-card-btn" onClick={handleSave}>
+          Авторизоваться
+        </button>
         <p>
           У вас ещё нет аккаунта?
           <Link
@@ -59,7 +61,11 @@ const Login = () => {
             Зарегистрироваться
           </Link>
         </p>
-        <Link className="forgot-password" style={{ padding: "1vw", color: "blue" }} to={"/forgotpas"}>
+        <Link
+          className="forgot-password"
+          style={{ padding: "1vw", color: "blue" }}
+          to={"/forgotpas"}
+        >
           Забыли пароль?
         </Link>
       </div>

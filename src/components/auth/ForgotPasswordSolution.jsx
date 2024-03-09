@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
-import SpinnerLoad from "../../pages/Spinner";
+import Loader from "../../loading/Loader";
 
 const ForgotPasswordSolution = () => {
   const [code, setCode] = useState("");
@@ -27,7 +27,7 @@ const ForgotPasswordSolution = () => {
     }
   };
   if (loader) {
-    return <SpinnerLoad />;
+    return <Loader />;
   }
 
   return (
