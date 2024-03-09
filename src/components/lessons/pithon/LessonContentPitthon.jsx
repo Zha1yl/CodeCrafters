@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import PY from "./../../../assets/icons8-питон.svg";
 import LessonAccord from "../accordLess/LessonAccord";
+import { NavLink } from "react-router-dom";
 const LessonContentPitthon = () => {
   const [buttonHovered, setButtonHovered] = useState(false);
 
@@ -56,19 +57,22 @@ const LessonContentPitthon = () => {
             тестирования. Пожалуйста, рассмотрите возможность пожертвования для
             поддержки завершения его разработки.
           </p>
-          <button
-            className="button_lesson"
-            style={{
-              backgroundColor: buttonHovered ? "#2d6786" : "",
-              color: buttonHovered ? "#d9edf7" : "",
-            }}
-            onMouseEnter={handleButtonHover}
-            onMouseLeave={handleButtonLeave}
-          >
-            Пожертвовать сейчас
-          </button>
+          <NavLink to={"/donate"}>
+            <button
+              className="button_lesson"
+              style={{
+                backgroundColor: buttonHovered ? "#2d6786" : "",
+                color: buttonHovered ? "#d9edf7" : "",
+              }}
+              onMouseEnter={handleButtonHover}
+              onMouseLeave={handleButtonLeave}
+            >
+              Пожертвовать сейчас
+            </button>
+          </NavLink>
         </div>
       </div>
+
       <h1 className="h1__lesson">Курсы</h1>
       <LessonAccord faglist={faglist} />
     </div>

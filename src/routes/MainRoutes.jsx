@@ -17,6 +17,8 @@ import ForgotPassword from "../components/auth/ForgotPassword";
 import ForgotPasswordSolution from "../components/auth/ForgotPasswordSolution";
 
 
+import Loader from "../loading/Loader";
+
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
     { id: 1, link: "/", element: <HomePage /> },
@@ -34,6 +36,7 @@ const MainRoutes = () => {
     { id: 13, link: "/forgotpas", element: <ForgotPassword /> },
     { id: 14, link: "/forgotsolution", element: <ForgotPasswordSolution /> },
     { id: 15, link: "/addlesson", element: <AddLessons /> },
+     { id: 16, link: "/loader", element: <Loader /> },
   ];
   return (
     <div>

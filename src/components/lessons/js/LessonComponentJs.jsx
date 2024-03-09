@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../lessons/lesson.css";
 import JS from "../../../assets/icons8-javascript (3).svg";
 import LessonAccord from "../accordLess/LessonAccord";
+import { NavLink } from "react-router-dom";
 const LessonComponentJs = () => {
   const [buttonHovered, setButtonHovered] = useState(false);
 
@@ -69,18 +70,19 @@ const LessonComponentJs = () => {
             бета-тестирования. Пожалуйста, рассмотрите возможность пожертвования
             для поддержки завершения его разработки.
           </p>
-
-          <button
-            className="button_lesson2"
-            style={{
-              backgroundColor: buttonHovered ? "#2d6786" : "",
-              color: buttonHovered ? "#d9edf7" : "",
-            }}
-            onMouseEnter={handleButtonHover}
-            onMouseLeave={handleButtonLeave}
-          >
-            Пожертвовать сейчас
-          </button>
+          <NavLink to={"/donate"}>
+            <button
+              className="button_lesson2"
+              style={{
+                backgroundColor: buttonHovered ? "#2d6786" : "",
+                color: buttonHovered ? "#d9edf7" : "",
+              }}
+              onMouseEnter={handleButtonHover}
+              onMouseLeave={handleButtonLeave}
+            >
+              Пожертвовать сейчас
+            </button>
+          </NavLink>
         </div>
       </div>
       <h1 className="h1__lesson">Курсы</h1>

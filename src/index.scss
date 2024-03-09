@@ -150,6 +150,30 @@ body {
       radial-gradient(circle, #ffcae1 0, #daeafc 100%);
     padding: 1rem;
   }
+// ! amira
+  .try {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 100vw;
+    margin: 0 auto;
+    background: linear-gradient(
+        -10deg,
+        #3a3a51 35%,
+        rgba(237, 202, 216, 0) 75%,
+        #7f1e34
+      ),
+      radial-gradient(circle, #700030 0, #003f88 100%);
+    position: relative;
+  }
+  .privet {
+    color: #fff;
+    opacity: 1;
+  }
+}
+.css-xbax5b {
+  background-color: rgb(207, 205, 205);
+}
   // ! iska
   .hello {
     color: #ffffff;
@@ -204,6 +228,7 @@ body {
 .css-xbax5b {
   background-color: rgb(207, 205, 205);
 }
+
 .css-1nfijbh {
   background-color: #fff;
 }
