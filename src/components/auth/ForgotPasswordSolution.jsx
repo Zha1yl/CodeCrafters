@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
+import SpinnerLoad from "../../pages/Spinner";
 
 const ForgotPasswordSolution = () => {
   const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { forgotPasswordSolution, error } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const { forgotPasswordSolution, error, loader } = useAuth();
   const handleSave = () => {
     if (
       !email.trim() ||
@@ -24,6 +26,9 @@ const ForgotPasswordSolution = () => {
       forgotPasswordSolution(formData);
     }
   };
+  if (loader) {
+    return <SpinnerLoad />;
+  }
 
   return (
     <div className="auth-container">
@@ -40,12 +45,12 @@ const ForgotPasswordSolution = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Confirm password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
@@ -54,7 +59,16 @@ const ForgotPasswordSolution = () => {
           placeholder="Code"
           onChange={(e) => setCode(e.target.value)}
         />
-        <button onClick={handleSave}>Подтвердить</button>
+          <button
+          className="password-show"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          Показать пароль
+          {showPassword ? "🙈" : "👁️"}
+        </button>
+        <button className="auth-card-btn" onClick={handleSave}>
+          Подтвердить
+        </button>
       </div>
       <p className="auth-footer">
         codeCrafters бесплатен, и ваша учетная запись по умолчанию является

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./auth.css";
 import { useAuth } from "../../context/AuthContextProvider";
+import SpinnerLoad from "../../pages/Spinner";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const { handleForgotPassword } = useAuth();
+  const { handleForgotPassword, loader } = useAuth();
+
   const handleEmail = () => {
     if (!email.trim()) {
       alert("Заполните все поля");
@@ -14,6 +16,9 @@ const ForgotPassword = () => {
       handleForgotPassword(formData);
     }
   };
+  if (loader) {
+    return <SpinnerLoad />;
+  }
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -27,7 +32,7 @@ const ForgotPassword = () => {
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button onClick={handleEmail}>Отправить код</button>
+        <button className="auth-card-btn" onClick={handleEmail}>Отправить код</button>
       </div>
       <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является

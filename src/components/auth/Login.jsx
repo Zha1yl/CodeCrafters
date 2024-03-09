@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import { Link } from "react-router-dom";
 import "./auth.css";
+import SpinnerLoad from "../../pages/Spinner";
 
 const Login = () => {
   const { handleLogin, error, loader } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const handleSave = () => {
     if (!email.trim() || !password.trim()) {
       alert("Заполните все поля!");
@@ -17,6 +19,9 @@ const Login = () => {
       handleLogin(formData, email);
     }
   };
+  if (loader) {
+    return <SpinnerLoad />;
+  }
 
   return (
     <div className="auth-container">
@@ -25,19 +30,26 @@ const Login = () => {
           src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
           alt=""
         />
-
         <p>Войдите в бесплатный CodeCamp Learn</p>
+        {error ? <h2>{error}</h2> : null}
         <input
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button onClick={handleSave}>Авторизоваться</button>
+        <button
+          className="password-show"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          Показать пароль
+          {showPassword ? "🙈" : "👁️"}
+        </button>
+        <button className="auth-card-btn" onClick={handleSave}>Авторизоваться</button>
         <p>
           У вас ещё нет аккаунта?
           <Link
@@ -47,7 +59,9 @@ const Login = () => {
             Зарегистрироваться
           </Link>
         </p>
-        <Link style={{padding:"1vw", color:"blue"}} to={'/forgotpas'}>Забыли пароль?</Link>
+        <Link className="forgot-password" style={{ padding: "1vw", color: "blue" }} to={"/forgotpas"}>
+          Забыли пароль?
+        </Link>
       </div>
       <p className="auth-footer">
         codeCrafters бесплатен, и ваша учетная запись по умолчанию является

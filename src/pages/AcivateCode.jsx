@@ -35,7 +35,7 @@ const AcivateCode = () => {
           placeholder="код активации"
           onChange={(e) => setActivate(e.target.value)}
         />
-        <button onClick={handleCode}>Отправить код</button>
+        <button className="auth-card-btn" onClick={handleCode}>Отправить код</button>
       </div>
       <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является

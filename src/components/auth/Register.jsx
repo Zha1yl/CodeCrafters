@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import { Link } from "react-router-dom";
+import "./auth.css"
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { handleRegister, handleActivate, error } = useAuth();
   const handleSave = () => {
     if (
@@ -47,18 +49,25 @@ const Register = () => {
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
+
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Confirm password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <button onClick={handleSave}>Регистрация</button>
+        <button
+          className="password-show"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          Показать пароль
+          {showPassword ? "🙈" : "👁️"}
+        </button>
+        <button className="auth-card-btn" onClick={handleSave}>Регистрация</button>
         <p>
           У вас уже есть аккаунт?
           <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
