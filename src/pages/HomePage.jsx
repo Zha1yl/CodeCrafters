@@ -2,9 +2,11 @@ import React from "react";
 import "./homePage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
+import { useAuth } from "../context/AuthContextProvider";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   return (
     <>
       <main className="main">
@@ -65,7 +67,11 @@ const HomePage = () => {
         </p>
         <p className="main__text">Приятного кодирования!</p>
         <div className="main__btn">
-          <button className="main__button" onClick={() => navigate("/login")}>Войдите чтобы начать</button>
+          {currentUser ? null : (
+            <button className="main__button" onClick={() => navigate("/login")}>
+              Войдите чтобы начать
+            </button>
+          )}
         </div>
 
         <div className="section">

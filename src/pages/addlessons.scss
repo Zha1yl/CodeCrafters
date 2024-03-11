@@ -1,0 +1,134 @@
+.footer {
+  display: none;
+}
+.addlessons {
+  width: 100%;
+  position: fixed;
+  background-color: #1c1c25;
+  padding: 1.25vw;
+  padding-top: 3.3vw;
+  .addlessons__container {
+    background-color: #fff;
+    overflow-x: hidden;
+    display: flex;
+    .addlessons__left {
+      padding: 10px;
+      width: 50%;
+      min-height: 96vh;
+      border-right: 1px solid rgb(174, 171, 171);
+      .addlessons__top {
+        .adllessons__title {
+          font-size: 20px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .addlessons__item {
+          position: relative;
+          width: 47vw;
+          .addlessons__textfield_top {
+            width: 47vw;
+            height: 40px;
+            margin-bottom: 20px;
+            text-indent: 10px;
+            background-color: #fff;
+            color: black;
+            border: 2px solid #1c1c25;
+          }
+          .addlessons__svg {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            cursor: pointer;
+          }
+          .addlessons__textfield_top:active,
+          .addlessons__textfield_top:focus {
+            border: 2px solid red;
+          }
+          .addlessons__textfield_top::placeholder {
+            color: rgb(174, 171, 171);
+          }
+        }
+      }
+      .addlessons__bottom {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .adllessons__title {
+          font-size: 20px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .addlessons__item {
+          width: 100%;
+          position: relative;
+          .addlessons__textfield {
+            min-width: 100%;
+            max-width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            text-indent: 10px;
+            background-color: #fff;
+            color: black;
+            border: 2px solid #1c1c25;
+          }
+          .addlessons__svg {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            cursor: pointer;
+          }
+          .addlessons__textfield:active,
+          .addlessons__textfield:focus {
+            border: 2px solid red;
+          }
+          .addlessons__textfield::placeholder {
+            color: rgb(174, 171, 171);
+          }
+          .addlessons__textfield_small {
+            max-width: 50vw;
+            min-height: 40px;
+            max-height: 120px;
+            padding: 5px 0;
+          }
+          .addlessons__svg {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .addlessons__right {
+      max-width: 50%;
+      padding: 10px;
+      .addlessons__title {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .addlessons__item {
+        position: relative;
+        .addlessons__textfield_big {
+          min-width: 47.1vw;
+          max-width: 47.1vw;
+          min-height: 80px;
+          max-height: 337px;
+          border: 2px solid #1c1c25;
+          text-indent: 10px;
+          background-color: #fff;
+          padding: 5px 0;
+        }
+        .addlessons__textfield_big::placeholder {
+          color: rgb(174, 171, 171);
+        }
+        .addlessons__svg {
+          position: absolute;
+          right: 6px;
+          top: 6px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

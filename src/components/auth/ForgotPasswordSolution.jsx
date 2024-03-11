@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
-import { Link, useNavigate } from "react-router-dom";
-import "./auth.css";
 import Loader from "../../loading/Loader";
 
-const Login = () => {
-  const { handleLogin, error, loader } = useAuth();
+const ForgotPasswordSolution = () => {
+  const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  const { forgotPasswordSolution, error, loader } = useAuth();
   const handleSave = () => {
-    if (!email.trim() || !password.trim()) {
-      alert("Заполните все поля!");
+    if (
+      !email.trim() ||
+      !password.trim() ||
+      !code.trim() ||
+      !passwordConfirm.trim()
+    ) {
+      alert("Заполните поля!");
     } else {
       let formData = new FormData();
       formData.append("email", email);
       formData.append("password", password);
-      handleLogin(formData, email);
-      navigate("/")
+      formData.append("password_confirm", passwordConfirm);
+      formData.append("code", code);
+      forgotPasswordSolution(formData);
     }
   };
   if (loader) {
@@ -27,24 +32,34 @@ const Login = () => {
 
   return (
     <div className="auth-container">
+      {error ? <h2>{error}</h2> : null}
       <div className="auth-card">
         <img
           src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
           alt=""
         />
-        <p>Войдите в бесплатный CodeCamp Learn</p>
-        {error ? <h2>{error}</h2> : null}
+        <p>Войдите в бесплатный CodeCrafters Learn</p>
         <input
           type="text"
-          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type={showPassword ? "text" : "password"}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Confirm password"
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Code"
+          onChange={(e) => setCode(e.target.value)}
+        />
+          <button
           className="password-show"
           onClick={() => setShowPassword(!showPassword)}
         >
@@ -52,24 +67,8 @@ const Login = () => {
           {showPassword ? "🙈" : "👁️"}
         </button>
         <button className="auth-card-btn" onClick={handleSave}>
-          Авторизоваться
+          Подтвердить
         </button>
-        <p>
-          У вас ещё нет аккаунта?
-          <Link
-            style={{ textDecoration: "none", color: "blue" }}
-            to="/register"
-          >
-            Зарегистрироваться
-          </Link>
-        </p>
-        <Link
-          className="forgot-password"
-          style={{ padding: "1vw", color: "blue" }}
-          to={"/forgotpas"}
-        >
-          Забыли пароль?
-        </Link>
       </div>
       <p className="auth-footer">
         codeCrafters бесплатен, и ваша учетная запись по умолчанию является
@@ -83,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPasswordSolution;

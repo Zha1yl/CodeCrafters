@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import { Link } from "react-router-dom";
+import "./auth.css"
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { handleRegister, handleActivate, error } = useAuth();
   const handleSave = () => {
     if (
@@ -23,6 +25,7 @@ const Register = () => {
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
       handleRegister(formData);
+      handleActivate(formData);
     }
   };
 
@@ -38,27 +41,33 @@ const Register = () => {
         <input
           type="text"
           placeholder="Имя пользователя"
-
           onChange={(e) => setName(e.target.value)}
-
         />
 
         <input
           type="text"
-          placeholder="email"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
+          type={showPassword ? "text" : "password"}
+          placeholder="Confirm password"
+          onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPasswordConfirm(e.target.value)}/>
-        <button onClick={handleSave}>register</button>
+        <button
+          className="password-show"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          Показать пароль
+          {showPassword ? "🙈" : "👁️"}
+        </button>
+        <button className="auth-card-btn" onClick={handleSave}>Регистрация</button>
         <p>
           У вас уже есть аккаунт?
           <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
