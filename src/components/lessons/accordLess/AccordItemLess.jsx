@@ -27,7 +27,7 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
             <NavLink to={"/video"}>
               <button className="button__video">Видео</button>
             </NavLink>
-            <NavLink to={"/task"}>
+            <NavLink to={"/tasks"}>
               <button className="button__video" style={{ marginLeft: "10px" }}>
                 Задачи
               </button>
