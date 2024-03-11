@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import Loader from "../../loading/Loader";
+import "./auth.css"
 
 const ForgotPasswordSolution = () => {
   const [code, setCode] = useState("");
