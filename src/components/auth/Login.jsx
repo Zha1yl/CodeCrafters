@@ -47,7 +47,9 @@ const Login = () => {
             Зарегистрироваться
           </Link>
         </p>
-        <Link style={{padding:"1vw", color:"blue"}} to={'/forgotpas'}>Забыли пароль?</Link>
+        <Link style={{ padding: "1vw", color: "blue" }} to={"/forgotpas"}>
+          Забыли пароль?
+        </Link>
       </div>
       <p className="auth-footer">
         codeCrafters бесплатен, и ваша учетная запись по умолчанию является

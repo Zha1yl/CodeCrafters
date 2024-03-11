@@ -85,20 +85,20 @@
   font-size: 20px;
 }
 @media (max-width: 768px) {
-  .try {
+}
 
-.right{
+.right {
   margin-top: 15px;
   line-height: 24px;
 }
 
-@media (max-width: 768px){
-  .try{ 
+@media (max-width: 768px) {
+  .try {
     display: flex;
     flex-direction: column;
     padding: 0 20px;
   }
-.hello{
+  .hello {
     display: flex;
     justify-content: center;
   }
@@ -120,7 +120,6 @@
     flex-direction: column;
     justify-content: center;
     text-align: end;
-    
   }
 }
 
