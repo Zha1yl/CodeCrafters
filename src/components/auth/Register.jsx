@@ -57,8 +57,7 @@ const Register = () => {
         <input
           type="password"
           placeholder="password"
-          onChange={(e) => setPasswordConfirm(e.target.value)}
-
+          onChange={(e) => setPasswordConfirm(e.target.value)}/>
         <button onClick={handleSave}>register</button>
         <p>
           У вас уже есть аккаунт?
