@@ -4,7 +4,8 @@
   align-items: center;
   background: #042120;
   min-height: 100vh;
-  animation: animate3d 10s linear infinite;
+  animation: animate3d infinite linear infinite;
+  -webkit-animation: animate3d infinite linear infinite;
 }
 
 @keyframes animate3d {

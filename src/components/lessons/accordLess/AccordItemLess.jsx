@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../../lessons/lesson.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
   const itemRef = useRef(null);
   const [itemHeight, setItemHeight] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setItemHeight(isOpen ? itemRef.current.scrollHeight : 0);
   }, [isOpen]);
@@ -23,11 +23,14 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
       >
         <div className="accardionles-body" ref={itemRef}>
           <p className="accardionles__text">{fagItem.description}</p>
+          <button onClick={() => navigate(`/edit/${fagItem.slug}`)}>
+            EDIT COURSES
+          </button>
           <div className="button__task">
             <NavLink to={"/video"}>
               <button className="button__video">Видео</button>
             </NavLink>
-            <NavLink to={"/task"}>
+            <NavLink to={"/tasks"}>
               <button className="button__video" style={{ marginLeft: "10px" }}>
                 Задачи
               </button>
