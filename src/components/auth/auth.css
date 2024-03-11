@@ -10,11 +10,10 @@ login .auth-container {
   margin: 7vw 0vw 3vw 37vw;
   padding: 2vw;
 }
-.auth-card input {
+.auth-card-inp {
   height: 3vw;
   border: 3px solid lightgrey;
   margin-bottom: 1vw;
-  color: white;
 }
 .auth-card-btn {
   height: 3vw;
@@ -78,10 +77,10 @@ login .auth-container {
   .auth-card-btn {
     font-size: 1.5vw;
   }
-  .password-show{
+  .password-show {
     font-size: 0.8vw;
   }
-  .forgot-password{
+  .forgot-password {
     font-size: 1.5vw;
   }
 }
@@ -112,7 +111,7 @@ login .auth-container {
   .auth-card p {
     font-size: 2.7vw;
   }
-  .password-show{
+  .password-show {
     font-size: 2vw;
   }
 }
@@ -130,7 +129,7 @@ login .auth-container {
     width: 6vw;
     height: 6vw;
   }
-  .forgot-password{
+  .forgot-password {
     font-size: 2vw;
   }
 }

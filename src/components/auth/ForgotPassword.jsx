@@ -28,11 +28,14 @@ const ForgotPassword = () => {
         />
         <p>Забыли пароль</p>
         <input
+          className="auth-card-inp"
           type="text"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="auth-card-btn" onClick={handleEmail}>Отправить код</button>
+        <button className="auth-card-btn" onClick={handleEmail}>
+          Отправить код
+        </button>
       </div>
       <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является
