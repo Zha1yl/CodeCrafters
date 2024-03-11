@@ -1,6 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./addlessons.scss";
+import { useLesson } from "../context/LessonContextProvider";
 const AddLessons = () => {
+  const {
+    createLesson,
+    categories,
+    getCategories,
+    getOneLesson,
+    lessons,
+    createProject,
+    createTasks,
+    oneCourses,
+    getProjects,
+    projects,
+  } = useLesson();
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
+  // console.log(categories);
+  const [title, setTitle] = useState("");
+  const [titleTask, setTitleTask] = useState("");
+  const [desciption, setDesciption] = useState("");
+  const [desciptionTask, setDesciptionTask] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [project, setProject] = useState("");
+  const [vid, setVid] = useState("");
+  const [courses, setCourses] = useState("");
+  const handleCLick = () => {
+    const newLesson = new FormData();
+    newLesson.append("title", title);
+    createLesson(newLesson);
+  };
+  const handleCLick2 = () => {
+    const newLesson = new FormData();
+    newLesson.append("title", title);
+    newLesson.append("description", desciption);
+    newLesson.append("course", category.toLowerCase());
+    newLesson.append("price", price);
+    createProject(newLesson);
+  };
+  const handleCLick3 = () => {
+    const newLesson = new FormData();
+    newLesson.append("course", category.toLowerCase());
+    newLesson.append("title", titleTask);
+    newLesson.append("description", desciptionTask);
+    newLesson.append("correct_answer", correctAnswer);
+    newLesson.append("project", project.toLowerCase());
+    createTasks(newLesson);
+  };
+  useEffect(() => {
+    getCategories();
+    getProjects();
+  }, []);
+  console.log(projects);
   return (
     <div className="addlessons">
       <div className="addlessons__container">
@@ -12,6 +66,7 @@ const AddLessons = () => {
                 type="text"
                 placeholder="Название курса"
                 className="addlessons__textfield_top"
+                onChange={(e) => setTitle(e.target.value)}
               />
               <svg
                 className="addlessons__svg"
@@ -20,6 +75,7 @@ const AddLessons = () => {
                 viewBox="0 0 14 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                onClick={handleCLick}
               >
                 <g clip-path="url(#clip0_1236_1954)">
                   <path
@@ -62,6 +118,7 @@ const AddLessons = () => {
                 type="text"
                 placeholder="Название проекта"
                 className="addlessons__textfield"
+                onChange={(e) => setTitle(e.target.value)}
               />
               <svg
                 className="addlessons__svg"
@@ -95,6 +152,7 @@ const AddLessons = () => {
               <textarea
                 className="addlessons__textfield_small addlessons__textfield"
                 placeholder="Описание проекта"
+                onChange={(e) => setDesciption(e.target.value)}
               />
               <svg
                 width="25"
@@ -144,11 +202,14 @@ const AddLessons = () => {
               </svg>
             </div>
             <div className="addlessons__item">
-              <input
-                type="text"
-                placeholder="Название курса"
-                className="addlessons__textfield"
-              />
+              <select onChange={(e) => setCategory(e.target.value)}>
+                <option>Choose course</option>
+                {categories?.map((elem) => (
+                  <option value={elem.id} key={elem.id}>
+                    {elem.title}
+                  </option>
+                ))}
+              </select>
               <svg
                 width="25"
                 height="25"
@@ -185,9 +246,10 @@ const AddLessons = () => {
             </div>
             <div className="addlessons__item">
               <input
-                type="text"
+                type="number"
                 placeholder="Цена проекта"
                 className="addlessons__textfield"
+                onChange={(e) => setPrice(e.target.value)}
               />
               <svg
                 width="25"
@@ -248,15 +310,45 @@ const AddLessons = () => {
               </svg>
             </div>
           </div>
+          <button onClick={handleCLick2}>Add Project</button>
         </div>
+
         <div className="addlessons__right">
           <h2 className="addlessons__title">Создание ТЗ</h2>
           <div className="addlessons__item">
+            <select onChange={(e) => setCategory(e.target.value)}>
+              <option>Choose course</option>
+              {categories?.map((elem) => (
+                <option value={elem.id} key={elem.id}>
+                  {elem.title}
+                </option>
+              ))}
+            </select>
+            <select onChange={(e) => setProject(e.target.value)}>
+              <option>Choose Project</option>
+              {projects.results?.map((elem) => (
+                <option value={elem.id} key={elem.id}>
+                  {elem.title}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Название задачи"
+              onChange={(e) => setTitleTask(e.target.value)}
+            />
             <textarea
               className="addlessons__textfield_big"
               placeholder="Введите ТЗ"
+              onChange={(e) => setDesciptionTask(e.target.value)}
+            />
+            <textarea
+              className="addlessons__textfield_big"
+              placeholder="Введите ответ ТЗ"
+              onChange={(e) => setCorrectAnswer(e.target.value)}
             />
           </div>
+          <button onClick={handleCLick3}>Add Task</button>
         </div>
       </div>
     </div>
