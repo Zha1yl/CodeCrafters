@@ -10,6 +10,8 @@ const INIT_STATE = {
   oneCourses: {},
   categories: [],
   projects: [],
+  tasks: [],
+  tasks_user: [],
   pages: 5,
 };
 const reducer = (state = INIT_STATE, action) => {
@@ -22,6 +24,10 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, oneCourses: action.payload };
     case "GET_PROJECTS":
       return { ...state, projects: action.payload };
+    case "GET_TASKS":
+      return { ...state, tasks: action.payload };
+    case "GET_TASKS-USER":
+      return { ...state, tasks_user: action.payload };
   }
 };
 const LessonContextProvider = ({ children }) => {
@@ -57,6 +63,10 @@ const LessonContextProvider = ({ children }) => {
   //! CREATE TASKS
   const createTasks = async (newLesson) => {
     await axios.post(`${API_COURSES}/tasks/`, newLesson, getConfig());
+  };
+  //! SEND TASK
+  const sendTask = async (newLesson) => {
+    await axios.post(`${API_COURSES}/tasks-user/`, newLesson, getConfig());
   };
   //! DELETE
   const deleteLesson = async (slug) => {
@@ -100,6 +110,34 @@ const LessonContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  //! GET TASKS
+  const getTasks = async () => {
+    try {
+      const { data } = await axios(`${API_COURSES}/tasks/`, getConfig());
+      console.log(data);
+      dispatch({
+        type: "GET_TASKS",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //! GET TASKS-USERS
+  const getTasksUsers = async () => {
+    try {
+      const { data } = await axios(`${API_COURSES}/tasks-user/`, getConfig());
+      console.log(data);
+      dispatch({
+        type: "GET_TASKS-USER",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //! EDIT
   const editLesson = async (slug, newLesson) => {
     try {
@@ -127,6 +165,11 @@ const LessonContextProvider = ({ children }) => {
     createTasks,
     getProjects,
     projects: state.projects,
+    getTasks,
+    tasks: state.tasks,
+    sendTask,
+    getTasksUsers,
+    tasks_user: state.tasks_user,
   };
   return (
     <lessonContext.Provider value={values}>{children}</lessonContext.Provider>
