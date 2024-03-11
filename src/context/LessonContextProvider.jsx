@@ -138,15 +138,37 @@ const LessonContextProvider = ({ children }) => {
     }
   };
 
-  //! EDIT
-  const editLesson = async (slug, newLesson) => {
+  //! EDIT COURSES
+  const editCourses = async (slug, newLesson) => {
     try {
       await axios.patch(
         `${API_COURSES}/courses/${slug}/`,
         newLesson,
         getConfig()
       );
-      navigate("/lesson");
+      navigate("/");
+    } catch (error) {}
+  };
+  //! EDIT Projects
+  const editProjects = async (slug, newLesson) => {
+    try {
+      await axios.patch(
+        `${API_COURSES}/projects/${slug}/`,
+        newLesson,
+        getConfig()
+      );
+      navigate("/js");
+    } catch (error) {}
+  };
+  //! EDIT Tasks
+  const editTasks = async (slug, newLesson) => {
+    try {
+      await axios.patch(
+        `${API_COURSES}/tasks/${slug}/`,
+        newLesson,
+        getConfig()
+      );
+      navigate("/tasks");
     } catch (error) {}
   };
   const values = {
@@ -159,7 +181,9 @@ const LessonContextProvider = ({ children }) => {
     deleteLesson,
     getOneCourses,
     oneLesson: state.oneLesson,
-    editLesson,
+    editCourses,
+    editProjects,
+    editTasks,
     createProject,
     oneCourses: state.oneCourses,
     createTasks,

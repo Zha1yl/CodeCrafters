@@ -15,8 +15,8 @@ import AddLessons from "../pages/AddLessons";
 import ChangePassword from "../components/auth/ChangePassword";
 import ForgotPassword from "../components/auth/ForgotPassword";
 import ForgotPasswordSolution from "../components/auth/ForgotPasswordSolution";
-
 import Loader from "../loading/Loader";
+import EditPage from "../pages/EditPage";
 import PayPage from "../pages/PayPage";
 
 const MainRoutes = () => {
@@ -37,7 +37,8 @@ const MainRoutes = () => {
     { id: 14, link: "/forgotsolution", element: <ForgotPasswordSolution /> },
     { id: 15, link: "/addlesson", element: <AddLessons /> },
     { id: 16, link: "/loader", element: <Loader /> },
-    { id: 17, link: "/pay", element: <PayPage /> },
+    { id: 17, link: "/edit/:slug", element: <EditPage /> },
+    { id: 18, link: "/pay", element: <PayPage /> },
   ];
   return (
     <div>
