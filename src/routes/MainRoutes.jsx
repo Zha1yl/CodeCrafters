@@ -30,7 +30,7 @@ const MainRoutes = () => {
     { id: 7, link: "/video", element: <VideoPage /> },
     { id: 8, link: "/tasks", element: <TasksPage /> },
     { id: 9, link: "/py", element: <LessonContentPitthon /> },
-    { id: 10, link: "/js", element: <LessonComponentJs /> },
+    { id: 10, link: "/js/:slug", element: <LessonComponentJs /> },
     { id: 11, link: "/activate", element: <AcivateCode /> },
     { id: 12, link: "/changepas", element: <ChangePassword /> },
     { id: 13, link: "/forgotpas", element: <ForgotPassword /> },

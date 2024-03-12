@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../../lessons/lesson.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useLesson } from "../../../context/LessonContextProvider";
 
-const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
+const AccordItemLess = ({ project, onClick, isOpen }) => {
+  const { deleteProjects, editProjects } = useLesson();
   const itemRef = useRef(null);
   const [itemHeight, setItemHeight] = useState(0);
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
   return (
     <li className="accardionles-item">
       <button className="accardionles-header" onClick={onClick}>
-        {fagItem.title}
+        {project.title}
       </button>
       <div
         className="accardionles-colop"
@@ -22,9 +24,22 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
         }}
       >
         <div className="accardionles-body" ref={itemRef}>
-          <p className="accardionles__text">{fagItem.description}</p>
-          <button onClick={() => navigate(`/edit/${fagItem.slug}`)}>
-            EDIT COURSES
+          <p className="accardionles__text">{project.description}</p>
+          <button
+            className="accardionles-header"
+            onClick={() => {
+              navigate(`/edit/${project.title.toLowerCase()}`);
+            }}
+          >
+            EDIT
+          </button>
+          <button
+            className="accardionles-header"
+            onClick={() => {
+              deleteProjects(project.title.toLowerCase());
+            }}
+          >
+            DELETE
           </button>
           <div className="button__task">
             <NavLink to={"/video"}>

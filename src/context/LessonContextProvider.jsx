@@ -6,20 +6,19 @@ import { API_COURSES } from "../helpers/api";
 const lessonContext = createContext();
 export const useLesson = () => useContext(lessonContext);
 const INIT_STATE = {
-  lessons: [],
+  courses: [],
   oneCourses: {},
-  categories: [],
   projects: [],
+  oneProject: {},
   tasks: [],
-  tasks_user: [],
+  tasks_user: {},
+  status_task: {},
   pages: 5,
 };
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case "GET_CATEGORIES":
-      return { ...state, categories: action.payload };
-    case "GET_LESSONS":
-      return { ...state, lessons: action.payload };
+    case "GET_COURSES":
+      return { ...state, courses: action.payload };
     case "GET_ONE_COURSES":
       return { ...state, oneCourses: action.payload };
     case "GET_PROJECTS":
@@ -28,63 +27,39 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, tasks: action.payload };
     case "GET_TASKS-USER":
       return { ...state, tasks_user: action.payload };
+    case "GET_ONE_PROJECT":
+      return { ...state, oneProject: action.payload };
+    case "GET_TASKS_RESULT":
+      return { ...state, status_task: action.payload };
   }
 };
+
 const LessonContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
   const navigate = useNavigate();
-  const getCategories = async () => {
-    const { data } = await axios(`${API_COURSES}/courses/`, getConfig());
-    dispatch({
-      type: "GET_CATEGORIES",
-      payload: data.results,
-    });
+
+  // ! GET COURSES
+  const getCourses = async () => {
+    setTimeout(async () => {
+      try {
+        const { data } = await axios(`${API_COURSES}/courses/`, getConfig());
+        dispatch({
+          type: "GET_COURSES",
+          payload: data.results,
+        });
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    }, 2000);
   };
-  //! GET
-  const getLessons = async () => {
-    try {
-      const { data } = await axios(`${API_COURSES}/courses/`, getConfig());
-      dispatch({
-        type: "GET_LESSONS",
-        payload: data.results,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  //! CREATE
-  const createLesson = async (newLesson) => {
-    await axios.post(`${API_COURSES}/courses/`, newLesson, getConfig());
-  };
-  //! CREATE PROJECT
-  const createProject = async (newLesson) => {
-    await axios.post(`${API_COURSES}/projects/`, newLesson, getConfig());
-  };
-  //! CREATE TASKS
-  const createTasks = async (newLesson) => {
-    await axios.post(`${API_COURSES}/tasks/`, newLesson, getConfig());
-  };
-  //! SEND TASK
-  const sendTask = async (newLesson) => {
-    await axios.post(`${API_COURSES}/tasks-user/`, newLesson, getConfig());
-  };
-  //! DELETE
-  const deleteLesson = async (slug) => {
-    try {
-      await axios.delete(`${API_COURSES}/courses/${slug}/`, getConfig());
-      getLessons();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   //! GET_ONE_COURSES
   const getOneCourses = async (slug) => {
     try {
-      const slug1 = slug.toLowerCase();
       const formData = new FormData();
-      formData.append("slug", slug1);
+      formData.append("slug", slug.toLowerCase());
       const { data } = await axios(
-        `${API_COURSES}/courses/${slug1}/`, // Исправлено: добавлен slug1 в URL
+        `${API_COURSES}/courses/${slug.toLowerCase()}/`,
         getConfig()
       );
       console.log(data);
@@ -92,16 +67,30 @@ const LessonContextProvider = ({ children }) => {
         type: "GET_ONE_COURSES",
         payload: data,
       });
-      navigate("/js");
     } catch (error) {
       console.log(error);
     }
   };
+
+  //! DELETE COURSES
+  const deleteCourses = async (slug) => {
+    try {
+      await axios.delete(`${API_COURSES}/courses/${slug}/`, getConfig());
+      getCourses();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //! CREATE COURSES
+  const createCourses = async (newLesson) => {
+    await axios.post(`${API_COURSES}/courses/`, newLesson, getConfig());
+  };
+
   //! GET PROJECTS
   const getProjects = async () => {
     try {
       const { data } = await axios(`${API_COURSES}/projects/`, getConfig());
-      console.log(data);
       dispatch({
         type: "GET_PROJECTS",
         payload: data,
@@ -109,6 +98,39 @@ const LessonContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  //! CREATE PROJECT
+  const createProject = async (newLesson) => {
+    await axios.post(`${API_COURSES}/projects/`, newLesson, getConfig());
+  };
+
+  //! DELETE PROJECTS
+  const deleteProjects = async (slug) => {
+    try {
+      await axios.delete(`${API_COURSES}/projects/${slug}/`, getConfig());
+      getProjects();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //! CREATE TASKS
+  const createTasks = async (newLesson) => {
+    await axios.post(`${API_COURSES}/tasks/`, newLesson, getConfig());
+  };
+
+  //! SEND TASK
+  const sendTask = async (newLesson) => {
+    const { data } = await axios.post(
+      `${API_COURSES}/tasks-user/`,
+      newLesson,
+      getConfig()
+    );
+    dispatch({
+      type: "GET_TASKS_RESULT",
+      payload: data,
+    });
   };
 
   //! GET TASKS
@@ -149,7 +171,27 @@ const LessonContextProvider = ({ children }) => {
       navigate("/");
     } catch (error) {}
   };
-  //! EDIT Projects
+
+  //! GET_ONE_PROJECT
+  const getOneProject = async (slug) => {
+    try {
+      const formData = new FormData();
+      formData.append("slug", slug.toLowerCase());
+      const { data } = await axios(
+        `${API_COURSES}/courses/${slug.toLowerCase()}/`,
+        getConfig()
+      );
+      console.log(data);
+      dispatch({
+        type: "GET_ONE_PROJECT",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //! EDIT PROJECTS
   const editProjects = async (slug, newLesson) => {
     try {
       await axios.patch(
@@ -160,7 +202,7 @@ const LessonContextProvider = ({ children }) => {
       navigate("/js");
     } catch (error) {}
   };
-  //! EDIT Tasks
+  //! EDIT TASKS
   const editTasks = async (slug, newLesson) => {
     try {
       await axios.patch(
@@ -172,19 +214,23 @@ const LessonContextProvider = ({ children }) => {
     } catch (error) {}
   };
   const values = {
-    getCategories,
-    getLessons,
-    lessons: state.lessons,
-    categories: state.categories,
-    createLesson,
+    courses: state.courses,
+    getCourses,
+    createCourses,
+    deleteCourses,
+
+    createProject,
+    deleteProjects,
+    getOneProject,
+
+    status_task: state.status_task,
+
     pages: state.pages,
-    deleteLesson,
     getOneCourses,
     oneLesson: state.oneLesson,
     editCourses,
     editProjects,
     editTasks,
-    createProject,
     oneCourses: state.oneCourses,
     createTasks,
     getProjects,

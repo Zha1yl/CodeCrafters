@@ -75,13 +75,13 @@ const AuthContextProvider = ({ children }) => {
   // !CHANGE PASSWORD
   const handleChangePassword = async (formData) => {
     try {
-      setLoader(true)
+      setLoader(true);
       await axios.post(`${API_COURSES}/ChangePassword/`, formData);
       navigate("/");
     } catch (error) {
       setError(Object.values(error.response.data));
-    }finally{
-      setLoader(false)
+    } finally {
+      setLoader(false);
     }
   };
   // !FORGOT PASSWORD

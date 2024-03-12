@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import AccordTaskLess from "./AccordTaskLess";
-import EditCode from "../codeEditor/EditCode";
 
-const TaskAccord = ({ faglist }) => {
+const TaskAccord = ({ tasks }) => {
   const [openId, setOpenId] = useState(null);
-  console.log(faglist);
+  console.log(tasks);
   return (
     <ul className="accardionles">
-      {faglist.results?.map((fagItem, id) => (
+      {tasks.results?.map((task, id) => (
         <>
           <AccordTaskLess
             key={id}
             onClick={() => setOpenId((prevId) => (prevId === id ? null : id))}
-            fagItem={fagItem}
+            task={task}
             isOpen={id === openId}
           />
         </>

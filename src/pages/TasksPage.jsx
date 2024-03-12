@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLesson } from "../context/LessonContextProvider";
 import TaskAccord from "../components/tasks/TaskAccord";
-import { NavLink } from "react-router-dom";
 
 const TasksPage = () => {
   const { tasks, getTasks } = useLesson();
@@ -25,7 +24,7 @@ const TasksPage = () => {
       <div className="algoritm">
         <div className="algoritm__text">ТАСКИ</div>
       </div>
-      <TaskAccord faglist={tasks} />
+      <TaskAccord tasks={tasks} />
     </div>
   );
 };
