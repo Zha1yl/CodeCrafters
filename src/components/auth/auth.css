@@ -14,6 +14,7 @@ login .auth-container {
   height: 3vw;
   border: 3px solid lightgrey;
   margin-bottom: 1vw;
+  color: black;
 }
 .auth-card-btn {
   height: 3vw;
