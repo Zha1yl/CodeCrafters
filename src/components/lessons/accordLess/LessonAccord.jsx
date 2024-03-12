@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import AccordItemLess from "./AccordItemLess";
 
-const LessonAccord = ({ faglist }) => {
+const LessonAccord = ({ projects }) => {
   const [openId, setOpenId] = useState(null);
 
   return (
     <ul className="accardionles">
-      {faglist.map((fagItem, id) => (
+      {projects?.map((project, id) => (
         <>
           <AccordItemLess
             key={id}
             onClick={() => setOpenId((prevId) => (prevId === id ? null : id))}
-            fagItem={fagItem}
+            project={project}
             isOpen={id === openId}
           />
         </>
