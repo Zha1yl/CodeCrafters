@@ -85,6 +85,7 @@ const LessonContextProvider = ({ children }) => {
   //! CREATE COURSES
   const createCourses = async (newLesson) => {
     await axios.post(`${API_COURSES}/courses/`, newLesson, getConfig());
+    getCourses();
   };
 
   //! GET PROJECTS
@@ -103,6 +104,7 @@ const LessonContextProvider = ({ children }) => {
   //! CREATE PROJECT
   const createProject = async (newLesson) => {
     await axios.post(`${API_COURSES}/projects/`, newLesson, getConfig());
+    // getProjects();
   };
 
   //! DELETE PROJECTS
