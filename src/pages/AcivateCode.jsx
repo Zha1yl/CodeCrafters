@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContextProvider";
 import "../";
+import Loader from "../loading/Loader";
 
 const AcivateCode = () => {
   const [activate, setActivate] = useState("");
   const [email, setEmail] = useState("");
-  const { handleActivate } = useAuth();
+  const { handleActivate, loader } = useAuth();
   const handleCode = () => {
     if (!email.trim() || !activate.trim()) {
       alert("Заполните все поля");
@@ -17,6 +18,9 @@ const AcivateCode = () => {
       console.log(formData);
     }
   };
+  if (loader) {
+    return <Loader />;
+  }
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -26,16 +30,20 @@ const AcivateCode = () => {
         />
         <p>Активируйте аккаунт</p>
         <input
+          className="auth-card-inp"
           type="text"
           placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type="text"
           placeholder="код активации"
           onChange={(e) => setActivate(e.target.value)}
         />
-        <button className="auth-card-btn" onClick={handleCode}>Отправить код</button>
+        <button className="auth-card-btn" onClick={handleCode}>
+          Отправить код
+        </button>
       </div>
       <p className="auth-footer">
         freeCodeCamp бесплатен, и ваша учетная запись по умолчанию является

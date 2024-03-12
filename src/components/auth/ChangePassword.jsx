@@ -9,6 +9,7 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [detail, setDetail] = useState("");
   const { handleChangePassword, error, loader } = useAuth();
   const handlePassword = () => {
     if (
@@ -24,6 +25,7 @@ const ChangePassword = () => {
       formData.append("old_password", oldPassword);
       formData.append("new_password", newPassword);
       formData.append("new_password_confirm", newPasswordConfirm);
+      formData.append("detail", detail);
       handleChangePassword(formData);
     }
   };
@@ -40,21 +42,25 @@ const ChangePassword = () => {
         />
         <p>Изменить пароль</p>
         <input
+          className="auth-card-inp"
           type="text"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           placeholder="Old password"
           onChange={(e) => setOldPassword(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           placeholder="New password"
           onChange={(e) => setNewPassword(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           placeholder="New password confirm"
           onChange={(e) => setNewPasswordConfirm(e.target.value)}
