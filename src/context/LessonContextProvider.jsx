@@ -62,7 +62,6 @@ const LessonContextProvider = ({ children }) => {
         `${API_COURSES}/courses/${slug.toLowerCase()}/`,
         getConfig()
       );
-      console.log(data);
       dispatch({
         type: "GET_ONE_COURSES",
         payload: data,
@@ -139,7 +138,6 @@ const LessonContextProvider = ({ children }) => {
   const getTasks = async () => {
     try {
       const { data } = await axios(`${API_COURSES}/tasks/`, getConfig());
-      console.log(data);
       dispatch({
         type: "GET_TASKS",
         payload: data,
@@ -152,7 +150,7 @@ const LessonContextProvider = ({ children }) => {
   const getTasksUsers = async () => {
     try {
       const { data } = await axios(`${API_COURSES}/tasks-user/`, getConfig());
-      console.log(data);
+
       dispatch({
         type: "GET_TASKS-USER",
         payload: data,
@@ -180,10 +178,9 @@ const LessonContextProvider = ({ children }) => {
       const formData = new FormData();
       formData.append("slug", slug.toLowerCase());
       const { data } = await axios(
-        `${API_COURSES}/courses/${slug.toLowerCase()}/`,
+        `${API_COURSES}/projects/${slug.toLowerCase()}/`,
         getConfig()
       );
-      console.log(data);
       dispatch({
         type: "GET_ONE_PROJECT",
         payload: data,
@@ -224,6 +221,7 @@ const LessonContextProvider = ({ children }) => {
     createProject,
     deleteProjects,
     getOneProject,
+    oneProject: state.oneProject,
 
     status_task: state.status_task,
 
