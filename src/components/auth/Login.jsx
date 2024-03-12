@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 import Loader from "../../loading/Loader";
 
@@ -9,6 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const handleSave = () => {
     if (!email.trim() || !password.trim()) {
       alert("Заполните все поля!");
@@ -17,6 +18,7 @@ const Login = () => {
       formData.append("email", email);
       formData.append("password", password);
       handleLogin(formData, email);
+      navigate("/");
     }
   };
 
@@ -38,14 +40,12 @@ const Login = () => {
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          style={{ color: "black" }}
         />
         <input
           className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          style={{ color: "black" }}
         />
         <button
           className="password-show"

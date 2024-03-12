@@ -2,10 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import "../lessons/lesson.css";
 import EditCode from "../codeEditor/EditCode";
 import { useLesson } from "../../context/LessonContextProvider";
-import { color } from "framer-motion";
 
-const AccordTaskLess = ({ fagItem, onClick, isOpen }) => {
-  const { sendTask, tasks_user, getTasksUsers } = useLesson();
+const AccordTaskLess = ({ task, onClick, isOpen }) => {
+  const { sendTask, tasks_user, getTasksUsers, status_task } = useLesson();
   const [userAnswer, setUserAnswer] = useState("");
   const [status, setStatus] = useState("");
   const itemRef = useRef(null);
@@ -14,24 +13,26 @@ const AccordTaskLess = ({ fagItem, onClick, isOpen }) => {
     const newLesson = new FormData();
     newLesson.append("user_answer", userAnswer);
     newLesson.append("status", status);
-    let arr = [];
-    arr.push(fagItem.title.toLowerCase());
-    newLesson.append("task", arr);
+    newLesson.append("task", task.title.toLowerCase());
     sendTask(newLesson);
   };
   useEffect(() => {
     setItemHeight(isOpen ? itemRef.current.scrollHeight : 0);
-    getTasksUsers();
-  }, [isOpen]);
+    // getTasksUsers();
+  }, [isOpen, status_task]);
   console.log(tasks_user);
-
+  console.log(status_task.status);
   return (
     <li
       className="accardionles-item"
-      style={{ backgroundColor: tasks_user.status === "D" ? "green" : null }}
+      style={{
+        backgroundColor: `${
+          status_task.status === "D" ? "green" : ""
+        } !important`,
+      }}
     >
       <button className="accardionles-header" onClick={onClick}>
-        {fagItem.title}
+        {task.title}
       </button>
       <div
         className="accardionles-colop"
@@ -40,7 +41,7 @@ const AccordTaskLess = ({ fagItem, onClick, isOpen }) => {
         }}
       >
         <div className="accardionles-body" ref={itemRef}>
-          <p className="accardionles__text">{fagItem.description}</p>
+          <p className="accardionles__text">{task.description}</p>
           <EditCode />
           <textarea
             className="addlessons__textfield_small addlessons__textfield"

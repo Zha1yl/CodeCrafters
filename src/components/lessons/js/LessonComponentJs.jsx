@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../lessons/lesson.css";
 import JS from "../../../assets/icons8-javascript (3).svg";
 import LessonAccord from "../accordLess/LessonAccord";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useLesson } from "../../../context/LessonContextProvider";
 const LessonComponentJs = () => {
-  const { oneCourses } = useLesson();
+  const { slug } = useParams();
+  console.log(slug);
+  const { oneCourses, getOneCourses } = useLesson();
+  useEffect(() => {
+    getOneCourses(slug);
+  }, []);
   console.log(oneCourses);
   const [buttonHovered, setButtonHovered] = useState(false);
 
@@ -70,7 +75,7 @@ const LessonComponentJs = () => {
         </div>
       </div>
       <h1 className="h1__lesson">Курсы</h1>
-      <LessonAccord faglist={oneCourses.projects} />
+      <LessonAccord projects={oneCourses.projects} />
     </div>
   );
 };
