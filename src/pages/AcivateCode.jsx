@@ -15,7 +15,6 @@ const AcivateCode = () => {
       formData.append("email", email);
       formData.append("code", activate);
       handleActivate(formData);
-      console.log(formData);
     }
   };
   if (loader) {
