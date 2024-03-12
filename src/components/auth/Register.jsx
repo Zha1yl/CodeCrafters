@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import { Link } from "react-router-dom";
 import "./auth.css";
-import { loader } from "@monaco-editor/react";
 import Loader from "../../loading/Loader";
 
 const Register = () => {
