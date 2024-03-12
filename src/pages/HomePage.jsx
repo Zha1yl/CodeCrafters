@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import { useAuth } from "../context/AuthContextProvider";
 import { useLesson } from "../context/LessonContextProvider";
+import { ADMIN_EMAILS } from "../helpers/api";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ const HomePage = () => {
   const { courses, getCourses, deleteCourses } = useLesson();
   useEffect(() => {
     getCourses();
-  }, [courses]);
+  }, []);
+
   return (
     <>
       <main className="main">
@@ -79,6 +81,7 @@ const HomePage = () => {
           )}
         </div>
 
+
         <div className="section">
           <h2 className="section__title">
             Получите бесплатные проверенные сертификаты по основной учебной
@@ -86,70 +89,75 @@ const HomePage = () => {
           </h2>
           {/* ОТОБРАЖЕНИЕ */}
           {courses.map((elem) => (
-            <>
+            <div
+              key={elem.slug} // Добавлен ключ для элемента списка
+              className="section__block"
+              onClick={() => {
+                const slug = elem.title.toLowerCase();
+                navigate(`/js/${elem.slug}/`);
+              }}
+            >
+              <div className="section__pic">
+                <img src={elem.image_light} alt="" />
+              </div>
+              <p className="section__desc">{elem.title}</p>
               <div
-                className="section__block"
-                onClick={() => {
-                  const slug = elem.title.toLowerCase();
-                  navigate(`/js/${elem.slug}/`);
+                style={{
+                  display: "flex",
+                  position: "absolute",
+                  right: "21vw",
                 }}
               >
-                <div className="section__pic">
-                  <img src={elem.image_light} alt="" />
-                </div>
-                <p className="section__desc">{elem.title}</p>
-                <div
-                  style={{
-                    display: "flex",
-                    position: "absolute",
-                    right: "21vw",
-                  }}
-                >
-                  <button
-                    style={{
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      backgroundColor: "#1c1c25",
-                      width: "auto",
-                      padding: "0 5px",
-                      height: "30px",
-                      borderRadius: "4px",
-                      marginRight: "10px",
-                    }}
-                    onClick={() => {
-                      setTimeout(() => {
-                        navigate(`/edit/${elem.slug}`);
-                      }, 1000);
-                    }}
-                  >
-                    EDIT
-                  </button>
-                  <button
-                    style={{
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      backgroundColor: "#1c1c25",
-                      width: "auto",
-                      padding: "0 5px",
-                      height: "30px",
-                      borderRadius: "4px",
-                    }}
-                    onClick={() => {
-                      deleteCourses(elem.slug);
-                    }}
-                  >
-                    DELETE
-                  </button>
-                </div>
+                {currentUser === ADMIN_EMAILS.admin_1 ||
+                currentUser === ADMIN_EMAILS.admin_2 ? (
+                  <>
+                    <button
+                      style={{
+                        color: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        backgroundColor: "#1c1c25",
+                        width: "auto",
+                        padding: "0 5px",
+                        height: "30px",
+                        borderRadius: "4px",
+                        marginRight: "10px",
+                      }}
+                      onClick={() => {
+                        setTimeout(() => {
+                          navigate(`/edit/${elem.slug}`);
+                        }, 1000);
+                      }}
+                    >
+                      EDIT COURSES
+                    </button>
+                    <button
+                      style={{
+                        color: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        backgroundColor: "#1c1c25",
+                        width: "auto",
+                        padding: "0 5px",
+                        height: "30px",
+                        borderRadius: "4px",
+                      }}
+                      onClick={() => {
+                        deleteCourses(elem.slug);
+                      }}
+                    >
+                      DELETE COURSES
+                    </button>
+                  </>
+                ) : (
+                  <></>
+                )}
               </div>
-            </>
+            </div>
           ))}
-
-          <div className="assistant-container">
-            <button className="assistant-button">Chat with ChatGPT</button>
-          </div>
+        </div>
+        <div className="assistant-container">
+          <button className="assistant-button">Chat with ChatGPT</button>
         </div>
       </main>
       <Footer />
