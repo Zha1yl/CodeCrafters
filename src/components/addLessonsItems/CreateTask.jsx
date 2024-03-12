@@ -49,7 +49,7 @@ const CreateTask = ({ courses, createTasks, projects }) => {
             onChange={(e) => setCorrectAnswer(e.target.value)}
           />
         </div>
-        <button onClick={handleCLick}>Создать проект</button>
+        <button onClick={handleCLick}>Создать таск</button>
       </div>
     </>
   );

@@ -17,3 +17,7 @@ export const executeCode = async (language, sourceCode) => {
   });
   return res.data;
 };
+export const ADMIN_EMAILS = {
+  admin_1: "wunknown2@gmail.com",
+  admin_2: "e.zhanyshov@bk.ru",
+};

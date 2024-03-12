@@ -18,7 +18,7 @@ const Login = () => {
       formData.append("email", email);
       formData.append("password", password);
       handleLogin(formData, email);
-      navigate("/")
+      navigate("/");
     }
   };
 
@@ -40,14 +40,14 @@ const Login = () => {
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          style={{ color: "black" }}
+          // style={{ color: "black" }}
         />
         <input
           className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          style={{ color: "black" }}
+          // style={{ color: "black" }}
         />
         <button
           className="password-show"

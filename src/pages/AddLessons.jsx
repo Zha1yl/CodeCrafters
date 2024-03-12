@@ -32,7 +32,7 @@ const AddLessons = () => {
         <div className="addlessons__left">
           <div className="addlessons__top">
             {/* // ! создание курса */}
-            <h2 className="adllessons__title">Создаие курса</h2>
+            <h2 className="adllessons__title">Создание курса</h2>
             <div className="addlessons__item">
               <input
                 type="text"

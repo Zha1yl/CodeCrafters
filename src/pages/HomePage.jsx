@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import { useAuth } from "../context/AuthContextProvider";
 import { useLesson } from "../context/LessonContextProvider";
+import { ADMIN_EMAILS } from "../helpers/api";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const HomePage = () => {
   const { courses, getCourses, deleteCourses } = useLesson();
   useEffect(() => {
     getCourses();
-  }, [courses]);
+  }, []);
   return (
     <>
       <main className="main">
@@ -107,22 +108,29 @@ const HomePage = () => {
                 </div>
                 <p className="section__desc">{elem.title}</p>
               </div>
-              <button
-                onClick={() => {
-                  setTimeout(() => {
-                    navigate(`/edit/${elem.slug}`);
-                  }, 1000);
-                }}
-              >
-                EDIT COURSES
-              </button>
-              <button
-                onClick={() => {
-                  deleteCourses(elem.slug);
-                }}
-              >
-                DELETE COURSES
-              </button>
+              {currentUser === ADMIN_EMAILS.admin_1 ||
+              currentUser === ADMIN_EMAILS.admin_2 ? (
+                <>
+                  <button
+                    onClick={() => {
+                      setTimeout(() => {
+                        navigate(`/edit/${elem.slug}`);
+                      }, 1000);
+                    }}
+                  >
+                    EDIT COURSES
+                  </button>
+                  <button
+                    onClick={() => {
+                      deleteCourses(elem.slug);
+                    }}
+                  >
+                    DELETE COURSES
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
             </>
           ))}
 
