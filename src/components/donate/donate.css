@@ -86,11 +86,16 @@
 }
 @media (max-width: 768px){
   .try{ 
+
+.right {
+  margin-top: 15px;
+  line-height: 24px;
+}
     display: flex;
     flex-direction: column;
     padding: 0 20px;
   }
-.hello{
+  .hello {
     display: flex;
     justify-content: center;
   }
@@ -112,7 +117,6 @@
     flex-direction: column;
     justify-content: center;
     text-align: end;
-    
   }
 }
 

@@ -21,6 +21,7 @@ const Login = () => {
       navigate("/")
     }
   };
+
   if (loader) {
     return <Loader />;
   }
@@ -35,14 +36,18 @@ const Login = () => {
         <p>Войдите в бесплатный CodeCamp Learn</p>
         {error ? <h2>{error}</h2> : null}
         <input
+          className="auth-card-inp"
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          style={{ color: "black" }}
         />
         <input
+          className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          style={{ color: "black" }}
         />
         <button
           className="password-show"

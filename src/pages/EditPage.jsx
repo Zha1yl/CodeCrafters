@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./addlessons.scss";
 import { useLesson } from "../context/LessonContextProvider";
-const AddLessons = () => {
+import { useParams } from "react-router-dom";
+const EditPage = () => {
+  const { slug } = useParams();
+  console.log(slug);
   const {
     createLesson,
     categories,
     getCategories,
-    getOneLesson,
+    getOneCourses,
     lessons,
     createProject,
     createTasks,
     oneCourses,
     getProjects,
     projects,
+    editCourses,
+    editProjects,
+    editTasks,
   } = useLesson();
   // useEffect(() => {
   //   getCategories();
   // }, []);
   // console.log(categories);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(slug);
   const [titleTask, setTitleTask] = useState("");
   const [desciption, setDesciption] = useState("");
   const [desciptionTask, setDesciptionTask] = useState("");
@@ -30,8 +36,9 @@ const AddLessons = () => {
   const [courses, setCourses] = useState("");
   const handleCLick = () => {
     const newLesson = new FormData();
+    newLesson.append("slug", slug);
     newLesson.append("title", title);
-    createLesson(newLesson);
+    editCourses(slug, newLesson);
   };
   const handleCLick2 = () => {
     const newLesson = new FormData();
@@ -39,7 +46,7 @@ const AddLessons = () => {
     newLesson.append("description", desciption);
     newLesson.append("course", category.toLowerCase());
     newLesson.append("price", price);
-    createProject(newLesson);
+    editProjects(newLesson);
   };
   const handleCLick3 = () => {
     const newLesson = new FormData();
@@ -48,7 +55,7 @@ const AddLessons = () => {
     newLesson.append("description", desciptionTask);
     newLesson.append("correct_answer", correctAnswer);
     newLesson.append("project", project.toLowerCase());
-    createTasks(newLesson);
+    editTasks(newLesson);
   };
   useEffect(() => {
     getCategories();
@@ -66,6 +73,7 @@ const AddLessons = () => {
                 type="text"
                 placeholder="Название курса"
                 className="addlessons__textfield_top"
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
               <svg
@@ -355,4 +363,4 @@ const AddLessons = () => {
   );
 };
 
-export default AddLessons;
+export default EditPage;

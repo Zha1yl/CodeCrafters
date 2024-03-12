@@ -6,7 +6,7 @@ const Loader = () => {
 
   return (
     <div>
-      <section>
+      <section className="loader__section">
         <div className="loader">
           {[...Array(spanCount)].map((_, index) => (
             <span

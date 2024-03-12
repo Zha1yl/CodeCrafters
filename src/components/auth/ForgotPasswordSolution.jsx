@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContextProvider";
 import Loader from "../../loading/Loader";
+import "./auth.css";
 
 const ForgotPasswordSolution = () => {
   const [code, setCode] = useState("");
@@ -40,26 +41,30 @@ const ForgotPasswordSolution = () => {
         />
         <p>Войдите в бесплатный CodeCrafters Learn</p>
         <input
+          className="auth-card-inp"
           type="text"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type={showPassword ? "text" : "password"}
           placeholder="Confirm password"
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
         <input
+          className="auth-card-inp"
           type="text"
           placeholder="Code"
           onChange={(e) => setCode(e.target.value)}
         />
-          <button
+        <button
           className="password-show"
           onClick={() => setShowPassword(!showPassword)}
         >

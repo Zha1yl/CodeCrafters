@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const VideoPage = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div>VideoPage</div>;
+};
 
-export default VideoPage
+export default VideoPage;

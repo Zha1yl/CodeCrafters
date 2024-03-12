@@ -129,3 +129,24 @@
     }
   }
 }
+.assistant-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999; /* Устанавливаем высокий z-index, чтобы элемент был поверх остального контента */
+}
+
+.assistant-button {
+  background-color: #4caf50; /* Цвет фона кнопки */
+  color: white; /* Цвет текста на кнопке */
+  border: none; /* Убираем границу */
+  padding: 15px 25px; /* Задаем внутренние отступы */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Изменяем курсор при наведении */
+  border-radius: 50%; /* Делаем кнопку круглой */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+}
+
+.assistant-button:hover {
+  background-color: #45a049; /* Изменяем цвет фона при наведении */
+}
