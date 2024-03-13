@@ -85,10 +85,10 @@ const ModalWindow = (props) => {
             windowWidth > 951 ? "modal__setting_first" : null
           }`}
         >
-          <p className="modal__desc" onClick={()=> navigate("/changepas")}>Profile</p>
+          <p className="modal__desc" onClick={()=> navigate("/changepas")}>Изменить пароль</p>
         </div>
         <div className="modal__setting" onClick={() => navigate("/donate")}>
-          <p className="modal__desc">Donat</p>
+          <p className="modal__desc">Сделать пожертвование</p>
         </div>
         {/* // ! при адаптиве в бургер меню появляются доп пункты */}
         {windowWidth < 450 ? (

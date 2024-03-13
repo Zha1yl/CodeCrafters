@@ -9,7 +9,6 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [detail, setDetail] = useState("");
   const { handleChangePassword, error, loader } = useAuth();
   const handlePassword = () => {
     if (
@@ -25,7 +24,6 @@ const ChangePassword = () => {
       formData.append("old_password", oldPassword);
       formData.append("new_password", newPassword);
       formData.append("new_password_confirm", newPasswordConfirm);
-      formData.append("detail", detail);
       handleChangePassword(formData);
     }
   };
