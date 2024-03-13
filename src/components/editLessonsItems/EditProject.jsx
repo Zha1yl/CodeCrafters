@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const EditProject = ({ courses, editProjects, slug, getOneProject }) => {
+const EditProject = ({
+  courses,
+  editProjects,
+  getOneProject,
+  oneProject,
+  // slug,
+}) => {
+  const { slug } = useParams();
+  console.log(slug);
+
   const [title, setTitle] = useState("");
   const [desciption, setDesciption] = useState("");
   const [price, setPrice] = useState("");
@@ -8,15 +18,16 @@ const EditProject = ({ courses, editProjects, slug, getOneProject }) => {
 
   useEffect(() => {
     getOneProject(slug);
-  }, [slug]);
-
+  }, []);
+  console.log(oneProject);
   const handleCLick = () => {
     const newLesson = new FormData();
+    newLesson.append("slug", title);
     newLesson.append("title", title);
     newLesson.append("description", desciption);
     newLesson.append("course", course.toLowerCase());
     newLesson.append("price", price);
-    editProjects(newLesson);
+    editProjects(newLesson, slug);
   };
   return (
     <>
@@ -111,7 +122,19 @@ const EditProject = ({ courses, editProjects, slug, getOneProject }) => {
           </svg>
         </div>
         <div className="addlessons__item">
-          <select onChange={(e) => setCourse(e.target.value)}>
+          <select
+            style={{
+              padding: "8px",
+              fontSize: "16px",
+              borderRadius: "5px",
+              marginBottom: "20px",
+              border: "1px solid #ccc",
+              width: "100%",
+              outline: "none",
+              color: "#fff",
+            }}
+            onChange={(e) => setCourse(e.target.value)}
+          >
             <option>Выберите курс</option>
             {courses?.map((elem, index) => (
               <option key={index}>{elem.title}</option>

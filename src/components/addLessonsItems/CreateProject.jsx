@@ -13,6 +13,10 @@ const CreateProject = ({ courses, createProject }) => {
     newLesson.append("course", course.toLowerCase());
     newLesson.append("price", price);
     createProject(newLesson);
+    setTitle("");
+    setDesciption("");
+    setPrice("");
+    setCourse("");
   };
   return (
     <>
@@ -203,7 +207,7 @@ const CreateProject = ({ courses, createProject }) => {
           height: "30px",
           borderRadius: "4px",
         }}
-        onClick={handleCLick}
+        onClick={() => handleCLick()}
       >
         Создать проект
       </button>

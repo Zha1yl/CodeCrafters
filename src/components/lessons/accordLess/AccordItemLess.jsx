@@ -4,8 +4,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useLesson } from "../../../context/LessonContextProvider";
 
 const AccordItemLess = ({ project, onClick, isOpen }) => {
-  const { deleteProjects, editProjects } = useLesson();
+  const { deleteProjects, editProjects, byeProject } = useLesson();
   const itemRef = useRef(null);
+  // console.log(project);
   const [itemHeight, setItemHeight] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -50,6 +51,12 @@ const AccordItemLess = ({ project, onClick, isOpen }) => {
                 Задачи
               </button>
             </NavLink>
+            <button
+              className="accardionles-header"
+              onClick={() => byeProject(project.title.toLowerCase())}
+            >
+              купить {project.price}
+            </button>
           </div>
         </div>
       </div>
