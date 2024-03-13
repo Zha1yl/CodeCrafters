@@ -31,7 +31,6 @@ const AuthContextProvider = ({ children }) => {
       const { data } = await axios.post(
         `${API_COURSES}/login/`,
         formData,
-        getConfig()
       );
       localStorage.setItem("tokens", JSON.stringify(data));
       localStorage.setItem("email", JSON.stringify(email));
@@ -76,7 +75,7 @@ const AuthContextProvider = ({ children }) => {
   const handleActivate = async (formData) => {
     try {
       setLoader(true);
-      await axios.post(`${API_COURSES}/activate/`, formData, getConfig());
+      await axios.post(`${API_COURSES}/activate/`, formData);
       navigate("/login");
     } catch (error) {
       setError(Object.values(error.response.data));

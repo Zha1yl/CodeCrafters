@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import "./homePage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import { useAuth } from "../context/AuthContextProvider";
 import { useLesson } from "../context/LessonContextProvider";
+import Comment from "../Comment";
+
+
+
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -12,6 +17,7 @@ const HomePage = () => {
   useEffect(() => {
     getCourses();
   }, [courses]);
+ 
   return (
     <>
       <main className="main">
@@ -123,9 +129,10 @@ const HomePage = () => {
               >
                 DELETE COURSES
               </button>
+              
             </>
           ))}
-
+          <Comment />
           <div className="assistant-container">
             <button className="assistant-button">Chat with ChatGPT</button>
           </div>
