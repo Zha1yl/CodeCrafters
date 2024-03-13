@@ -1,0 +1,373 @@
+.container_lesson {
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.algoritm {
+  padding-top: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  font-size: 45px;
+}
+.algoritm__text {
+  line-height: 45px;
+  width: 50vw;
+  text-align: center;
+  padding-bottom: 30px;
+}
+.text {
+  width: 60vw;
+  font-size: 21px;
+  display: flex;
+  flex-direction: column;
+}
+.text__descrip {
+  width: 60vw;
+  margin-top: 20px;
+  align-items: center;
+  margin-bottom: 21px;
+}
+.lesson_icon {
+  width: 120px;
+  height: 120px;
+  transition: 1s;
+}
+.lesson_icon:hover {
+  transform: scale(1.4);
+  transition: 1s;
+}
+.block1 {
+  border-color: #133547;
+  font-size: 18px;
+  width: 60vw;
+
+  margin: 36px 0 25px 0;
+  padding: 15px;
+
+  overflow-wrap: break-word;
+  background: hsl(328, 36%, 79%);
+  border-color: #bce8f1;
+  color: #4f4f54;
+  border: 1px solid transparent;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+.block2 {
+  width: 60vw !important;
+
+  color: #4f4f54;
+  background: linear-gradient(
+      -10deg,
+      hsl(243, 41%, 81%) 35%,
+      rgba(237, 202, 216, 0) 75%,
+      hsl(328, 26%, 72%)
+    ),
+    radial-gradient(circle, hsl(328, 26%, 72%) 0, hsl(248, 42%, 83%) 100%);
+  padding: 1rem;
+}
+
+.h1__lesson {
+  font-size: 36px;
+  padding-top: 60px;
+  padding-bottom: 25px;
+}
+.content {
+  font-size: 21px;
+}
+.button_lesson {
+  color: #4f4f54;
+  width: 200px;
+  height: 45px;
+  font-size: 18px;
+  background: hsl(248, 42%, 83%);
+  cursor: pointer;
+  margin-top: 20px;
+  border: 3px solid hsl(246, 19%, 52%);
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+}
+.button_lesson::before,
+.button_lesson::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(87, 104, 144, 0.729),
+    transparent
+  );
+  animation: shine 1.2s ease-in-out infinite;
+}
+
+.button_lesson::before {
+  left: -100%;
+}
+
+.button_lesson::after {
+  left: 100%;
+}
+
+@keyframes shine {
+  to {
+    left: 100%;
+  }
+}
+.block2 {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.block2__text {
+  border-bottom: 1px solid hsl(246, 19%, 52%);
+  padding-bottom: 30px;
+}
+.button_lesson2 {
+  border: 3px solid hsl(246, 19%, 52%);
+  background: hsl(248, 42%, 83%);
+  color: #4f4f54;
+  font-size: 18px;
+  width: 200px;
+  height: 45px;
+  margin-top: 30px;
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+}
+.button_lesson2::before,
+.button_lesson2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(87, 104, 144, 0.729),
+    transparent
+  );
+  animation: shine 1.2s ease-in-out infinite;
+}
+
+.button_lesson2::before {
+  left: -100%;
+}
+
+.button_lesson2::after {
+  left: 100%;
+}
+
+@keyframes shine {
+  to {
+    left: 100%;
+  }
+}
+.accardionles {
+  list-style-type: none;
+  margin: 16px;
+  padding: 16px;
+  background-color: #1c1c25;
+
+  /* border-radius: 7px; */
+  width: 60vw;
+}
+
+.accardionles-item {
+  margin-top: 30px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  /* border-radius: 7px; */
+  background-color: #1c1c25;
+}
+
+.accardionles-header {
+  position: relative;
+  width: 100%;
+  padding: 20px 60px 20px 30px;
+  background-color: #ffffff;
+  border: 0;
+  font-size: 22px;
+  text-align: left;
+  cursor: pointer;
+  color: black;
+  border-bottom: 1px solid #fff;
+}
+
+.accardionles-colop {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s;
+}
+
+.accardionles-colop.open {
+  height: auto;
+}
+
+.accardionles-body {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #f1f1f1;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  font-size: 20px;
+  color: #393939;
+  border-radius: 7px;
+  margin-top: -5px;
+}
+.accardionles__text {
+  margin-bottom: 10px;
+}
+.button__video {
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  padding: 12px 20px;
+  border-radius: 3px;
+  border-color: #182759;
+  font-weight: 500;
+  background-color: #808287;
+  box-shadow: #00000000 8 8 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 15px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+.button__video:hover {
+  letter-spacing: 3px;
+  background-color: #182759;
+  color: #fff;
+  box-shadow: #4f63a6 7px 12px 29px 7px;
+}
+.button__video:active {
+  letter-spacing: 3px;
+  background-color: #6e85d1 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 10ms;
+}
+
+@media only screen and (max-width: 1000px) {
+  .algoritm__text {
+    font-size: 35px;
+  }
+}
+@media (max-width: 768px) {
+  .container_lesson {
+    width: 80vw;
+    /* padding: 0 20px; */
+  }
+  .algoritm__text {
+    width: 80vw;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 35px;
+  }
+  .accardionles-header {
+    padding: 10px;
+  }
+  .accardionles-item {
+    margin: 25px 0;
+  }
+  .accardionles-body {
+    padding: 10px;
+  }
+  .accardionles__text {
+    font-size: 16px;
+  }
+  .button__task {
+    display: flex;
+  }
+  .text {
+    width: 100%;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .block1 {
+    width: 100%;
+  }
+  .block2 {
+    width: 100% !important;
+  }
+  .block2__text {
+    width: 73vw;
+  }
+  .text__descrip {
+    width: 80vw;
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  .h1__lesson {
+    font-size: 28px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+  .accardionles {
+    width: 100%;
+  }
+  .accardionles-header {
+    font-size: 18px;
+  }
+  .lesson_icon {
+    width: 95px;
+    height: 95px;
+  }
+}
+@media (max-width: 500px) {
+  .container_lesson {
+    padding: 0;
+  }
+  .algoritm__text {
+    line-height: 27px;
+    font-size: 22px;
+  }
+  .accardionles {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .block2 {
+    width: 80vw !important;
+  }
+  .block1 {
+    width: 80vw !important;
+  }
+  .block2__text {
+    width: 73vw;
+    padding-bottom: 20px;
+  }
+  .text {
+    width: 73vw;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .text__descrip {
+    margin-top: 18px;
+    width: 80vw;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .block1 {
+    margin-top: 10px;
+  }
+  .lesson_icon {
+    width: 75px;
+    height: 75px;
+  }
+}

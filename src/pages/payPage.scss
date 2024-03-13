@@ -1,0 +1,163 @@
+.pay {
+  width: 100%;
+  padding-top: 5vh;
+  .pay__wrapper {
+    margin: 1.3vw;
+    .pay__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .pay__back {
+        display: flex;
+        align-items: center;
+        .pay__svg {
+        }
+      }
+      .pay__back_word {
+        margin-left: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 16px;
+      }
+      .pay__logo {
+      }
+      .pay__detail {
+      }
+    }
+    .pay__top {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      .pay__method {
+        margin-right: 20px;
+        width: 100px;
+        height: 40px;
+        background-color: #1c1c25;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        transition: 0.3s;
+        .pay__method_word {
+          color: black;
+          font-weight: 500;
+        }
+      }
+      .pay__method:last-child {
+        margin-right: 0;
+      }
+      .pay__method:hover {
+        background-color: #b6b2b2;
+        transition: 0.3s;
+        letter-spacing: 1px;
+      }
+    }
+    .pay__section {
+      width: 70%;
+      height: 40vh;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      .pay__left {
+        background-color: aqua;
+        width: 50%;
+        height: 40vh;
+        padding: 15px;
+        display: flex;
+        border-radius: 10px;
+        .pay__card {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .pay__card_top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            .pay__card_logo {
+              .pay__card_title {
+              }
+            }
+            .pay__card_cheap {
+              width: 25px;
+              .pay__svg_cheap {
+                width: 100%;
+              }
+            }
+          }
+          .pay__card_field {
+            .pay__card_input {
+              width: 22.7%;
+              height: 50px;
+              margin-right: 3%;
+              font-size: 35px;
+              text-indent: 10%;
+              letter-spacing: 22.5%;
+              border: none;
+              background: transparent;
+            }
+            .pay__card_input:focus,
+            .pay__card_input:active {
+              border: none;
+            }
+            .pay__card_input::placeholder {
+              text-align: center;
+            }
+            .pay__card_input:last-child {
+              margin-right: 0;
+            }
+          }
+          .pay__card_bottom {
+            .pay__card_date {
+              .pay__date_word {
+              }
+              .pay__date_date {
+              }
+            }
+            .pay__card_cvv {
+              .pay__cvv_lock {
+              }
+              .pay__cvv_code {
+              }
+            }
+          }
+        }
+      }
+      .pay__right {
+        width: 50%;
+        height: 40vh;
+        background-color: coral;
+      }
+    }
+    .pay__bottom {
+    }
+  }
+}
+// background: linear-gradient(45deg, #ffd700, #ffc100);
+:root {
+  --green: #00f260;
+  --blue: #0575e6;
+}
+.gradient {
+  background: linear-gradient(45deg, #eedd7d, #ffc100);
+  // background: linear-gradient(45deg, #e0e0e0, #c0c0c0);
+  //   background: linear-gradient(45deg, #c0c0c0, #a0a0a0);
+}
+
+.gradient::before {
+  position: absolute;
+  left: calc(50% - 1px);
+
+  display: flex;
+  justify-content: center;
+  width: 2px;
+  height: 70%;
+
+  color: #fff;
+
+  background: #fff;
+  transform: rotateZ(180deg);
+  opacity: 0.5;
+
+  content: "^";
+}
