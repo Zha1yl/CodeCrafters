@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 import CodeEditorPage from "../pages/CodeEditorPage";
 import { toggleTheme } from "../helpers/functions";
 import { useAuth } from "../context/AuthContextProvider";
+import { useLesson } from "../context/LessonContextProvider";
 
 const Navbar = () => {
   const { currentUser, checkAuth, logout } = useAuth();
+  const { searchCourses, search_course } = useLesson();
+  console.log(search_course);
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("tokens")) {
@@ -23,26 +26,40 @@ const Navbar = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  // ! Модалка поиска
+  const [isOpen1, setIsOpen1] = useState(false);
+
+  const openModal1 = () => {
+    setIsOpen1(true);
+  };
+
+  const closeModal1 = () => {
+    setIsOpen1(false);
+  };
+  useEffect(() => {
+    let body = document.querySelector("body");
+    body.addEventListener("click", () => {
+      closeModal1();
+    });
+  }, [isOpen1]);
   // Состояние для значения поискового запроса
   const [searchQuery, setSearchQuery] = useState("");
-
   // Обработчик изменения значения инпута
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
   // Обработчик нажатия клавиши Enter в инпуте
-  const handleInputKeyDown = (event) => {
+  const handleInputKeyDown = async (event) => {
     if (event.key === "Enter") {
-      // Выполнить поиск Google с текущим значением запроса
-      handleSearch();
+      await searchCourses(searchQuery);
+      setTimeout(() => {
+        openModal1();
+      }, 1000);
     }
   };
 
-  // Функция для выполнения поиска Google
-  const handleSearch = (e) => {
-    window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
-  };
   // ! При адаптиве смена темы и переключения языка заходят в кнопку меню
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -77,7 +94,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav__left">
         <div className="nav__search">
-          <div className="nav__search_icon" onClick={handleSearch}>
+          <div className="nav__search_icon">
             <svg
               className=""
               width="20"
@@ -116,6 +133,32 @@ const Navbar = () => {
             onKeyDown={handleInputKeyDown}
           />
         </div>
+        {isOpen1 && (
+          <div
+            className="modal1"
+            style={{
+              width: "40.5vw",
+              height: "auto",
+              padding: "20px",
+              backgroundColor: "#3b3b4f",
+              position: "absolute",
+              top: "5.5vh",
+            }}
+          >
+            <div className="modal1-content">
+              {search_course ? (
+                <>
+                  {search_course.results.map((elem) => (
+                    <>
+                      <p>{elem.title}</p>
+                      <p>{elem.description}</p>
+                    </>
+                  ))}
+                </>
+              ) : null}
+            </div>
+          </div>
+        )}
         <div className="nav__project-name">
           <h2 className="nav__title" onClick={() => navigate("/")}>
             CodeCrafters

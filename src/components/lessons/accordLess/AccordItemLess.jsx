@@ -13,7 +13,7 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
   return (
     <li className="accardionles-item">
       <button className="accardionles-header" onClick={onClick}>
-        {fagItem.q}
+        {fagItem.title}
       </button>
       <div
         className="accardionles-colop"
@@ -22,12 +22,12 @@ const AccordItemLess = ({ fagItem, onClick, isOpen }) => {
         }}
       >
         <div className="accardionles-body" ref={itemRef}>
-          <p className="accardionles__text">{fagItem.a}</p>
+          <p className="accardionles__text">{fagItem.description}</p>
           <div className="button__task">
             <NavLink to={"/video"}>
               <button className="button__video">Видео</button>
             </NavLink>
-            <NavLink to={"/task"}>
+            <NavLink to={"/tasks"}>
               <button className="button__video" style={{ marginLeft: "10px" }}>
                 Задачи
               </button>

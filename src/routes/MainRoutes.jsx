@@ -16,7 +16,6 @@ import ChangePassword from "../components/auth/ChangePassword";
 import ForgotPassword from "../components/auth/ForgotPassword";
 import ForgotPasswordSolution from "../components/auth/ForgotPasswordSolution";
 
-
 import Loader from "../loading/Loader";
 
 const MainRoutes = () => {
@@ -36,7 +35,7 @@ const MainRoutes = () => {
     { id: 13, link: "/forgotpas", element: <ForgotPassword /> },
     { id: 14, link: "/forgotsolution", element: <ForgotPasswordSolution /> },
     { id: 15, link: "/addlesson", element: <AddLessons /> },
-     { id: 16, link: "/loader", element: <Loader /> },
+    { id: 16, link: "/loader", element: <Loader /> },
   ];
   return (
     <div>

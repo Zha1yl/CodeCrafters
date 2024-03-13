@@ -7,8 +7,13 @@ const lessonContext = createContext();
 export const useLesson = () => useContext(lessonContext);
 const INIT_STATE = {
   lessons: [],
-  oneLesson: {},
+  oneCourses: {},
   categories: [],
+  projects: [],
+  tasks: [],
+  tasks_user: [],
+  rate_course: {},
+  search_course: {},
   pages: 5,
 };
 const reducer = (state = INIT_STATE, action) => {
@@ -17,27 +22,34 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, categories: action.payload };
     case "GET_LESSONS":
       return { ...state, lessons: action.payload };
-    case "GET_ONE_LESSON":
-      return { ...state, oneLesson: action.payload };
+    case "GET_ONE_COURSES":
+      return { ...state, oneCourses: action.payload };
+    case "GET_PROJECTS":
+      return { ...state, projects: action.payload };
+    case "GET_TASKS":
+      return { ...state, tasks: action.payload };
+    case "GET_TASKS-USER":
+      return { ...state, tasks_user: action.payload };
+    case "RATE_COURSE":
+      return { ...state, rate_course: action.payload };
+    case "SEARCH_COURSE":
+      return { ...state, search_course: action.payload };
   }
 };
 const LessonContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
   const navigate = useNavigate();
-  // const getCategories = async () => {
-  //   const { data } = await axios(`${API_COURSES}/courses/`, getConfig());
-  //   dispatch({
-  //     type: "GET_CATEGORIES",
-  //     payload: data.results,
-  //   });
-  // };
+  const getCategories = async () => {
+    const { data } = await axios(`${API_COURSES}/courses/`, getConfig());
+    dispatch({
+      type: "GET_CATEGORIES",
+      payload: data.results,
+    });
+  };
   //! GET
   const getLessons = async () => {
     try {
-      const { data } = await axios(
-        `${API_COURSES}/courses/${window.location.search}`,
-        getConfig()
-      );
+      const { data } = await axios(`${API_COURSES}/courses/`, getConfig());
       dispatch({
         type: "GET_LESSONS",
         payload: data.results,
@@ -50,6 +62,18 @@ const LessonContextProvider = ({ children }) => {
   const createLesson = async (newLesson) => {
     await axios.post(`${API_COURSES}/courses/`, newLesson, getConfig());
   };
+  //! CREATE PROJECT
+  const createProject = async (newLesson) => {
+    await axios.post(`${API_COURSES}/projects/`, newLesson, getConfig());
+  };
+  //! CREATE TASKS
+  const createTasks = async (newLesson) => {
+    await axios.post(`${API_COURSES}/tasks/`, newLesson, getConfig());
+  };
+  //! SEND TASK
+  const sendTask = async (newLesson) => {
+    await axios.post(`${API_COURSES}/tasks-user/`, newLesson, getConfig());
+  };
   //! DELETE
   const deleteLesson = async (slug) => {
     try {
@@ -59,21 +83,67 @@ const LessonContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  //! GET_ONE_LESSON
-  const getOneLesson = async (slug) => {
+  //! GET_ONE_COURSES
+  const getOneCourses = async (slug) => {
     try {
+      const slug1 = slug.toLowerCase();
+      const formData = new FormData();
+      formData.append("slug", slug1);
       const { data } = await axios(
-        `${API_COURSES}/courses/${slug}/`,
+        `${API_COURSES}/courses/${slug1}/`, // Исправлено: добавлен slug1 в URL
         getConfig()
       );
+      console.log(data);
       dispatch({
-        type: "GET_ONE_LESSON",
+        type: "GET_ONE_COURSES",
+        payload: data,
+      });
+      navigate("/js");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //! GET PROJECTS
+  const getProjects = async () => {
+    try {
+      const { data } = await axios(`${API_COURSES}/projects/`, getConfig());
+      console.log(data);
+      dispatch({
+        type: "GET_PROJECTS",
         payload: data,
       });
     } catch (error) {
       console.log(error);
     }
   };
+
+  //! GET TASKS
+  const getTasks = async () => {
+    try {
+      const { data } = await axios(`${API_COURSES}/tasks/`, getConfig());
+      console.log(data);
+      dispatch({
+        type: "GET_TASKS",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //! GET TASKS-USERS
+  const getTasksUsers = async () => {
+    try {
+      const { data } = await axios(`${API_COURSES}/tasks-user/`, getConfig());
+      console.log(data);
+      dispatch({
+        type: "GET_TASKS-USER",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //! EDIT
   const editLesson = async (slug, newLesson) => {
     try {
@@ -85,17 +155,71 @@ const LessonContextProvider = ({ children }) => {
       navigate("/lesson");
     } catch (error) {}
   };
+  // ! rating
+  const rating = async (slug, email, rating) => {
+    try {
+      let formData = new FormData();
+      formData.append("course", slug.toLowerCase());
+      formData.append("rating", rating);
+      formData.append("user", email);
+      console.log(slug.toLowerCase(), email, rating);
+      const { data } = await axios.post(
+        `${API_COURSES}/courses/${slug.toLowerCase()}/rating/`,
+        getConfig()
+      );
+      console.log(data);
+      dispatch({
+        type: "RATE_COURSE",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // ! SEARCH COURSES
+  const searchCourses = async (courses) => {
+    try {
+      let formData = new FormData();
+      formData.append("search", courses);
+      const { data } = await axios.get(
+        `${API_COURSES}/courses/`,
+        formData,
+        getConfig()
+      );
+      console.log(data);
+      dispatch({
+        type: "SEARCH_COURSE",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const values = {
-    // getCategories,
+    getCategories,
     getLessons,
     lessons: state.lessons,
     categories: state.categories,
     createLesson,
     pages: state.pages,
     deleteLesson,
-    getOneLesson,
+    getOneCourses,
     oneLesson: state.oneLesson,
     editLesson,
+    createProject,
+    oneCourses: state.oneCourses,
+    createTasks,
+    getProjects,
+    projects: state.projects,
+    getTasks,
+    tasks: state.tasks,
+    sendTask,
+    getTasksUsers,
+    tasks_user: state.tasks_user,
+    rating,
+    searchCourses,
+    search_course: state.search_course,
   };
   return (
     <lessonContext.Provider value={values}>{children}</lessonContext.Provider>
