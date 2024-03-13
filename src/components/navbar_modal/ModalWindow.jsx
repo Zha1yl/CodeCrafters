@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./modalWindow.scss";
 import { useNavigate } from "react-router-dom";
+import { ADMIN_EMAILS } from "../../helpers/api";
+import { useAuth } from "../../context/AuthContextProvider";
 
 const ModalWindow = (props) => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const { isOpen, onClose, windowWidth, toggleTheme } = props;
   // ! логика модалки
 
@@ -87,9 +90,24 @@ const ModalWindow = (props) => {
         >
           <p className="modal__desc" onClick={()=> navigate("/changepas")}>Изменить пароль</p>
         </div>
+        {currentUser === ADMIN_EMAILS.admin_1 ||
+        currentUser === ADMIN_EMAILS.admin_2 ? (
+          <>
+            <div
+              className="modal__setting"
+              onClick={() => navigate("/addLesson")}
+            >
+              <p className="modal__desc">Add lesson</p>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+
         <div className="modal__setting" onClick={() => navigate("/donate")}>
           <p className="modal__desc">Сделать пожертвование</p>
         </div>
+
         {/* // ! при адаптиве в бургер меню появляются доп пункты */}
         {windowWidth < 450 ? (
           <>

@@ -83,7 +83,6 @@ const HomePage = () => {
           )}
         </div>
 
-
         <div className="section">
           <h2 className="section__title">
             Получите бесплатные проверенные сертификаты по основной учебной
