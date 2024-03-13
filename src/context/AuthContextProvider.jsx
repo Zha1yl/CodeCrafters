@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_COURSES } from "../helpers/api";
-import Loader from "../loading/Loader";
 import { getConfig } from "../helpers/functions";
 const authContext = createContext();
 export const useAuth = () => useContext(authContext);
@@ -21,17 +20,14 @@ const AuthContextProvider = ({ children }) => {
     } catch (error) {
       setError(Object.values(error.response.data));
     } finally {
-      return <Loader />;
+      setLoader(false);
     }
   };
   //! Login
   const handleLogin = async (formData, email) => {
     try {
       setLoader(true);
-      const { data } = await axios.post(
-        `${API_COURSES}/login/`,
-        formData,
-      );
+      const { data } = await axios.post(`${API_COURSES}/login/`, formData);
       localStorage.setItem("tokens", JSON.stringify(data));
       localStorage.setItem("email", JSON.stringify(email));
       setCurrentUser(email);
@@ -99,7 +95,7 @@ const AuthContextProvider = ({ children }) => {
   const handleForgotPassword = async (formData) => {
     try {
       setLoader(true);
-      await axios.post(`${API_COURSES}/ForgotPassword/`, formData, getConfig());
+      await axios.post(`${API_COURSES}/ForgotPassword/`, formData);
       navigate("/forgotsolution");
     } catch (error) {
       setError(Object.values(error.response.data));
@@ -111,11 +107,7 @@ const AuthContextProvider = ({ children }) => {
   const forgotPasswordSolution = async (formData) => {
     try {
       setLoader(true);
-      await axios.post(
-        `${API_COURSES}/ForgotPasswordSolution/`,
-        formData,
-        getConfig()
-      );
+      await axios.post(`${API_COURSES}/ForgotPasswordSolution/`, formData);
       navigate("/login");
     } catch (error) {
       setError(Object.values(error.response.data));
