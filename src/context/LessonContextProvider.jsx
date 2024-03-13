@@ -138,7 +138,6 @@ const LessonContextProvider = ({ children }) => {
   const getTasks = async () => {
     try {
       const { data } = await axios(`${API_COURSES}/tasks/`, getConfig());
-      console.log(data);
       dispatch({
         type: "GET_TASKS",
         payload: data,
@@ -152,7 +151,7 @@ const LessonContextProvider = ({ children }) => {
   const getTasksUsers = async () => {
     try {
       const { data } = await axios(`${API_COURSES}/tasks-user/`, getConfig());
-      console.log(data);
+
       dispatch({
         type: "GET_TASKS-USER",
         payload: data,
@@ -184,7 +183,6 @@ const LessonContextProvider = ({ children }) => {
         formData,
         getConfig()
       );
-      console.log(data);
       dispatch({
         type: "GET_ONE_PROJECT",
         payload: data,
@@ -259,7 +257,7 @@ const LessonContextProvider = ({ children }) => {
     deleteProjects,
     getOneProject,
     oneProject: state.oneProject,
-    byeProject,
+     byeProject,
 
     status_task: state.status_task,
 

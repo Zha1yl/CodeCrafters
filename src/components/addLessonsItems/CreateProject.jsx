@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const CreateProject = ({ courses, createProject }) => {
   const [title, setTitle] = useState("");
   const [desciption, setDesciption] = useState("");
+  const [vid, setVid] = useState("");
   const [price, setPrice] = useState("");
   const [course, setCourse] = useState("");
 
@@ -10,6 +11,7 @@ const CreateProject = ({ courses, createProject }) => {
     const newLesson = new FormData();
     newLesson.append("title", title);
     newLesson.append("description", desciption);
+    newLesson.append("video", vid);
     newLesson.append("course", course.toLowerCase());
     newLesson.append("price", price);
     createProject(newLesson);
@@ -63,6 +65,11 @@ const CreateProject = ({ courses, createProject }) => {
             placeholder="Описание проекта"
             onChange={(e) => setDesciption(e.target.value)}
           />
+          <input
+            type="file"
+            style={{ marginBottom: "10px" }}
+            onChange={(e) => setVid(e.target.files[0])}
+          />
           <svg
             width="25"
             height="25"
@@ -103,6 +110,7 @@ const CreateProject = ({ courses, createProject }) => {
                 stroke-linejoin="round"
               />
             </g>
+
             <defs>
               <clipPath id="clip0_1236_2599">
                 <rect width="14" height="14" fill="white" />

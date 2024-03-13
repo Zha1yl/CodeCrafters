@@ -96,7 +96,7 @@ const AuthContextProvider = ({ children }) => {
   const handleForgotPassword = async (formData) => {
     try {
       setLoader(true);
-      await axios.post(`${API_COURSES}/ForgotPassword/`, formData, getConfig());
+      await axios.post(`${API_COURSES}/ForgotPassword/`, formData);
       navigate("/forgotsolution");
     } catch (error) {
       setError(Object.values(error.response.data));
@@ -108,11 +108,7 @@ const AuthContextProvider = ({ children }) => {
   const forgotPasswordSolution = async (formData) => {
     try {
       setLoader(true);
-      await axios.post(
-        `${API_COURSES}/ForgotPasswordSolution/`,
-        formData,
-        getConfig()
-      );
+      await axios.post(`${API_COURSES}/ForgotPasswordSolution/`, formData);
       navigate("/login");
     } catch (error) {
       setError(Object.values(error.response.data));

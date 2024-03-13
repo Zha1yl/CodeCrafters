@@ -2,9 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 import "../../lessons/lesson.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLesson } from "../../../context/LessonContextProvider";
+import { useAuth } from "../../../context/AuthContextProvider";
+import { ADMIN_EMAILS } from "../../../helpers/api";
 
 const AccordItemLess = ({ project, onClick, isOpen }) => {
   const { deleteProjects, editProjects, byeProject } = useLesson();
+  console.log(project);
+  const { currentUser } = useAuth();
   const itemRef = useRef(null);
   // console.log(project);
   const [itemHeight, setItemHeight] = useState(0);
@@ -26,27 +30,34 @@ const AccordItemLess = ({ project, onClick, isOpen }) => {
       >
         <div className="accardionles-body" ref={itemRef}>
           <p className="accardionles__text">{project.description}</p>
-          <button
-            className="accardionles-header"
-            onClick={() => {
-              navigate(`/edit/${project.title.toLowerCase()}`);
-            }}
-          >
-            EDIT
-          </button>
-          <button
-            className="accardionles-header"
-            onClick={() => {
-              deleteProjects(project.title.toLowerCase());
-            }}
-          >
-            DELETE
-          </button>
+          {currentUser === ADMIN_EMAILS.admin_1 ||
+          currentUser === ADMIN_EMAILS.admin_2 ? (
+            <>
+              <button
+                className="accardionles-header"
+                onClick={() => {
+                  navigate(`/edit/${project.title.toLowerCase()}`);
+                }}
+              >
+                EDIT
+              </button>
+              <button
+                className="accardionles-header"
+                onClick={() => {
+                  deleteProjects(project.title.toLowerCase());
+                }}
+              >
+                DELETE
+              </button>
+            </>
+          ) : (
+            <></>
+          )}
           <div className="button__task">
-            <NavLink to={"/video"}>
+            <NavLink to={`/video/${project.title.toLowerCase()}`}>
               <button className="button__video">Видео</button>
             </NavLink>
-            <NavLink to={"/tasks"}>
+            <NavLink to={`/tasks/${project.title.toLowerCase()}`}>
               <button className="button__video" style={{ marginLeft: "10px" }}>
                 Задачи
               </button>

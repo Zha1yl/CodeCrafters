@@ -3,7 +3,7 @@ import AccordItemLess from "./AccordItemLess";
 
 const LessonAccord = ({ projects }) => {
   const [openId, setOpenId] = useState(null);
-
+  console.log(projects);
   return (
     <ul className="accardionles">
       {projects?.map((project, id) => (
