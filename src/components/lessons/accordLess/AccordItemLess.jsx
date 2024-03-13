@@ -6,10 +6,11 @@ import { useAuth } from "../../../context/AuthContextProvider";
 import { ADMIN_EMAILS } from "../../../helpers/api";
 
 const AccordItemLess = ({ project, onClick, isOpen }) => {
+  const { deleteProjects, editProjects, byeProject } = useLesson();
   console.log(project);
   const { currentUser } = useAuth();
-  const { deleteProjects, editProjects } = useLesson();
   const itemRef = useRef(null);
+  // console.log(project);
   const [itemHeight, setItemHeight] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -61,6 +62,12 @@ const AccordItemLess = ({ project, onClick, isOpen }) => {
                 Задачи
               </button>
             </NavLink>
+            <button
+              className="accardionles-header"
+              onClick={() => byeProject(project.title.toLowerCase())}
+            >
+              купить {project.price}
+            </button>
           </div>
         </div>
       </div>

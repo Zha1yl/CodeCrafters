@@ -5,6 +5,8 @@ import Footer from "../components/footer/Footer";
 import { useAuth } from "../context/AuthContextProvider";
 import { useLesson } from "../context/LessonContextProvider";
 import { ADMIN_EMAILS } from "../helpers/api";
+import Comment from "../Comment";
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -152,6 +154,7 @@ const HomePage = () => {
                   <></>
                 )}
               </div>
+<Comment />
             </div>
           ))}
         </div>

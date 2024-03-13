@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_COURSES } from "../helpers/api";
-import Loader from "../loading/Loader";
 import { getConfig } from "../helpers/functions";
 const authContext = createContext();
 export const useAuth = () => useContext(authContext);
@@ -21,7 +20,7 @@ const AuthContextProvider = ({ children }) => {
     } catch (error) {
       setError(Object.values(error.response.data));
     } finally {
-      return <Loader />;
+      setLoader(false);
     }
   };
   //! Login

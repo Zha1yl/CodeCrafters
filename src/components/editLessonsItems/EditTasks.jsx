@@ -21,13 +21,37 @@ const EditTasks = ({ courses, editTasks, projects }) => {
       <div className="addlessons__right">
         <h2 className="addlessons__title">Создание ТЗ</h2>
         <div className="addlessons__item">
-          <select onChange={(e) => setCategory(e.target.value)}>
+          <select
+            style={{
+              padding: "8px",
+              fontSize: "16px",
+              borderRadius: "5px",
+              marginBottom: "20px",
+              border: "1px solid #ccc",
+              width: "100%",
+              outline: "none",
+              color: "#fff",
+            }}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option>Выбрать курса</option>
             {courses?.map((elem, index) => (
               <option key={index}>{elem.title}</option>
             ))}
           </select>
-          <select onChange={(e) => setProject(e.target.value)}>
+          <select
+            style={{
+              padding: "8px",
+              fontSize: "16px",
+              borderRadius: "5px",
+              marginBottom: "20px",
+              border: "1px solid #ccc",
+              width: "100%",
+              outline: "none",
+              color: "#fff",
+            }}
+            onChange={(e) => setProject(e.target.value)}
+          >
             <option>Выбрать проекта</option>
             {projects.results?.map((elem, index) => (
               <option key={index}>{elem.title}</option>
@@ -35,6 +59,7 @@ const EditTasks = ({ courses, editTasks, projects }) => {
           </select>
           <input
             type="text"
+            className="addlessons__textfield1"
             placeholder="Название задачи"
             onChange={(e) => setTitleTask(e.target.value)}
           />

@@ -4,12 +4,13 @@ import { useLesson } from "../context/LessonContextProvider";
 import { useParams } from "react-router-dom";
 import EditProject from "../components/editLessonsItems/EditProject";
 import EditTasks from "../components/editLessonsItems/EditTasks";
+
 const EditPage = () => {
   const { slug } = useParams();
-  console.log(slug);
   const {
     courses,
     getOneCourses,
+    oneCourses,
     getProjects,
     projects,
     editCourses,
@@ -17,16 +18,21 @@ const EditPage = () => {
     editTasks,
     getOneProject,
   } = useLesson();
-  const [title, setTitle] = useState(slug);
+  console.log(oneCourses);
+  const [title, setTitle] = useState(oneCourses.title);
+  const [lightTheme, setLightTheme] = useState("");
+  const [darkTheme, setDarkTheme] = useState("");
 
   const handleCLick = () => {
     const newLesson = new FormData();
     newLesson.append("slug", slug);
     newLesson.append("title", title);
+    newLesson.append("image_light", lightTheme);
+    newLesson.append("image_dark", darkTheme);
     editCourses(slug, newLesson);
   };
   useEffect(() => {
-    getOneCourses();
+    getOneCourses(slug);
     getProjects();
   }, []);
   return (
@@ -84,6 +90,19 @@ const EditPage = () => {
                   </clipPath>
                 </defs>
               </svg>
+            </div>
+          </div>
+          <div className="addlessons__file">
+            <div className="addlessons_file_input">
+              <input
+                type="file"
+                style={{ marginBottom: "10px" }}
+                onChange={(e) => setLightTheme(e.target.files[0])}
+              />
+              <input
+                type="file"
+                onChange={(e) => setDarkTheme(e.target.files[0])}
+              />
             </div>
           </div>
           <EditProject

@@ -10,7 +10,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [image, setImage] = useState(null);
   const { handleRegister, error, loader } = useAuth();
   const handleSave = () => {
     if (
@@ -26,14 +25,10 @@ const Register = () => {
       formData.append("name", name);
       formData.append("password", password);
       formData.append("password_confirm", passwordConfirm);
-      formData.append("image", image);
       handleRegister(formData);
     }
   };
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-  };
+
   if (loader) {
     return <Loader />;
   }
@@ -42,14 +37,10 @@ const Register = () => {
     <div className="auth-container">
       {error ? <h2>{error}</h2> : null}
       <div className="auth-card">
-        <input
-          className="auth-card-inp"
-          style={{ width: "8.5vw", height: "2.2vw" }}
-          type="file"
-          onChange={handleImageChange}
+        <img
+          src="https://cdn.freecodecamp.org/platform/universal/logo-512X512.png"
+          alt=""
         />
-        <img src={image && URL.createObjectURL(image)} alt="" />
-
         <p>Войдите в бесплатный CodeCrafters Learn</p>
         <input
           className="auth-card-inp"

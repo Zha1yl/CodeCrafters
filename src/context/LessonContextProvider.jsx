@@ -146,6 +146,7 @@ const LessonContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   //! GET TASKS-USERS
   const getTasksUsers = async () => {
     try {
@@ -176,9 +177,10 @@ const LessonContextProvider = ({ children }) => {
   const getOneProject = async (slug) => {
     try {
       const formData = new FormData();
-      formData.append("slug", slug.toLowerCase());
+      formData.append("id", slug.toLowerCase());
       const { data } = await axios(
-        `${API_COURSES}/projects/${slug.toLowerCase()}/`,
+        `${API_COURSES}/courses/${slug.toLowerCase()}/`,
+        formData,
         getConfig()
       );
       dispatch({
@@ -191,7 +193,7 @@ const LessonContextProvider = ({ children }) => {
   };
 
   //! EDIT PROJECTS
-  const editProjects = async (slug, newLesson) => {
+  const editProjects = async (newLesson, slug) => {
     try {
       await axios.patch(
         `${API_COURSES}/projects/${slug}/`,
@@ -199,8 +201,11 @@ const LessonContextProvider = ({ children }) => {
         getConfig()
       );
       navigate("/js");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   //! EDIT TASKS
   const editTasks = async (slug, newLesson) => {
     try {
@@ -212,6 +217,36 @@ const LessonContextProvider = ({ children }) => {
       navigate("/tasks");
     } catch (error) {}
   };
+
+  const orderProject = async () => {
+    try {
+      const { data } = await axios(`${API_COURSES}/order/`, getConfig());
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const byeProject = async (slug) => {
+    try {
+      const formData = new FormData();
+      formData.append("id", slug);
+      const { data } = await axios.post(
+        `${API_COURSES}/projects/${slug}/add_to_cart/`,
+        formData,
+        getConfig()
+      );
+      console.log(data);
+
+      setTimeout(() => {
+        orderProject();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // http://34.42.8.109/api/v1/order/
   const values = {
     courses: state.courses,
     getCourses,
@@ -222,6 +257,7 @@ const LessonContextProvider = ({ children }) => {
     deleteProjects,
     getOneProject,
     oneProject: state.oneProject,
+     byeProject,
 
     status_task: state.status_task,
 
