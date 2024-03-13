@@ -5,6 +5,8 @@ import Footer from "../components/footer/Footer";
 import { useAuth } from "../context/AuthContextProvider";
 import { useLesson } from "../context/LessonContextProvider";
 import { ADMIN_EMAILS } from "../helpers/api";
+import Comment from "../Comment";
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -81,6 +83,7 @@ const HomePage = () => {
           )}
         </div>
 
+
         <div className="section">
           <h2 className="section__title">
             Получите бесплатные проверенные сертификаты по основной учебной
@@ -152,6 +155,7 @@ const HomePage = () => {
                   <></>
                 )}
               </div>
+<Comment />
             </div>
           ))}
         </div>
